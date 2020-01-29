@@ -1,28 +1,30 @@
-<h1>Users</h1>
-<div class="users-container">
-  <div class="users-table">
-    <div class="users-header">
-      <div class="users-header-info"><h5>Email</h5></div>
-      <div class="users-header-info"><h5>Admin</h5></div>
-      <div class="users-header-info"><h5>Actions</h5></div>
-    </div>
-    <% @users.each do |user| %>
-      <div class="user-card">
-        <div class="user-info">
-          <h6><%= user.email %></h6>
-        </div>
-        <div class="user-info">
-          <h6><%= user.admin? ? 'Yes' : 'No' %></h6>
-        </div>
-        <div class="user-info">
-          <h6>
-            <%= link_to 'Edit', edit_admin_user_path(user) %>
-            |
-            <%= link_to 'Delete', admin_user_path(user), method: :delete %>
-          </h6>
-        </div>
+<div class="container pt5vh">
+  <h1>Users</h1>
+  <div class="users-container">
+    <div class="users-table">
+      <div class="users-header">
+        <div class="users-header-info"><h5>Email</h5></div>
+        <div class="users-header-info"><h5>Admin</h5></div>
+        <div class="users-header-info"><h5>Actions</h5></div>
       </div>
-    <% end %>
+      <% @users.each_with_index do |user, index| %>
+        <div class="user-card  <%= index.even? ? 'white' : 'dark' %>">
+          <div class="user-info">
+            <h6><%= user.email %></h6>
+          </div>
+          <div class="user-info">
+            <h6><%= user.admin? ? 'Yes' : 'No' %></h6>
+          </div>
+          <div class="user-info">
+            <h6>
+              <%= link_to 'Edit', edit_admin_user_path(user) %>
+              |
+              <%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: "Are you sure you want to permanently delete this user?"} %>
+            </h6>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to 'Add User', new_admin_user_path %>
   </div>
-  <%= link_to 'Add User', new_admin_user_path %>
 </div>
