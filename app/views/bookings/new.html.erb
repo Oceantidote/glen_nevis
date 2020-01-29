@@ -1,18 +1,18 @@
 <% content_for :head do %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.css">
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
 <% end %>
 
 <div class="ui container">
   <h1 class="ui header center aligned">
     <div class="content">
       <a href="/">
-      Anytime Quick Book
-      <div class="sub header">
-        <%= Date.today.strftime('%d %b %Y') %>
-      </div>
-    </a>
+        Anytime Quick Book
+        <div class="sub header">
+          <%= Date.today.strftime('%d %b %Y') %>
+        </div>
+      </a>
     </div>
   </h1>
   <form class="ui form" method="post" id="quick_book" action="#">
@@ -75,10 +75,10 @@
           <div class="field">
             <label>Type</label>
             <select class="ui dropdown">
-            <option value="">Caravan</option>
-            <option value="1">Motorcaravan</option>
-            <option value="0">Trailer Tent</option>
-          </select>
+              <option value="">Caravan</option>
+              <option value="1">Motorcaravan</option>
+              <option value="0">Trailer Tent</option>
+            </select>
           </div>
           <div class="field">
             <label>Extra Car</label>
@@ -109,39 +109,39 @@
           </div>
         </div>
         <h4>Payment</h4>
-          <div class="field">
-            <select class="ui dropdown">
+        <div class="field">
+          <select class="ui dropdown">
             <option value="">Make Deposit Payment</option>
             <option value="1">Make Full Payment</option>
             <option value="2">Make Partial Payment</option>
             <option value="3">Full Payment Received: Cash</option>
             <option value="4">Full Payment Received: Card</option>
           </select>
-         </div>
-      <div class="inline fields">
-        <label>Print label after adding?</label>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" name="frequency">
-            <label>Yes</label>
+        </div>
+        <div class="inline fields">
+          <label>Print label after adding?</label>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="frequency">
+              <label>Yes</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="frequency" checked="checked">
+              <label>No</label>
+            </div>
           </div>
         </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" name="frequency" checked="checked">
-            <label>No</label>
+        <div class="two fields">
+          <div class="field">
+            <button id="clear_form" tabindex="8" value="cancel" class="fluid ui negative button" name="cancel" type="submit">Clear Form</button>
+          </div>
+          <div class="field">
+            <button id="add_booking" tabindex="8" value="add_booking" class="fluid ui positive button" name="add_booking" type="submit">Quick Add to Anytime</button>
           </div>
         </div>
-        </div>
-    <div class="two fields">
-        <div class="field">
-          <button id="clear_form" tabindex="8" value="cancel" class="fluid ui negative button" name="cancel" type="submit">Clear Form</button>
       </div>
-      <div class="field">
-          <button id="add_booking" tabindex="8" value="add_booking" class="fluid ui positive button" name="add_booking" type="submit">Quick Add to Anytime</button>
-        </div>
-      </div>
-    </div>
 
 
       <div class="eight wide column">
