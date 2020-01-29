@@ -1,0 +1,32 @@
+.users-container {
+  padding: 10px;
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  border-right: thin #333;
+  margin-bottom: 20px;
+}
+
+.users-header-info {
+  h5 {
+    margin: 0;
+  }
+  padding: 0 10px;
+  flex: 1;
+  border-right: solid #333 1px;
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.user-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-info {
+  flex: 1;
+  padding: 5px 10px;
+}
