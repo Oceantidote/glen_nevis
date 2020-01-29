@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, skip: [:registrations, :passwords]
+  resources :bookings, only: [:new]
   authenticated :user do
-    root 'pages#home', as: :home
+    root 'bookings#new', as: :home
   end
   namespace :admin do
     resources :users, except: [:index]
