@@ -1,0 +1,254 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
+<% end %>
+
+<div class="ui container">
+  <h1 class="ui header center aligned">
+    <div class="content">
+      <a href="/">
+      Anytime Quick Book
+      <div class="sub header">
+        <%= Date.today.strftime('%d %b %Y') %>
+      </div>
+    </a>
+    </div>
+  </h1>
+  <form class="ui form" method="post" id="quick_book" action="#">
+    <div class="ui two column stackable grid container">
+
+      <div class="eight wide column">
+        <div class="three fields">
+          <div class="field">
+            <label>Arrival</label>
+            <div id="arrival_cal" class="ui calendar">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input id="arrival_date" tabindex="-1" type="string" placeholder="Arrival Date" value="" name="arrival_date"></input>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Nights</label>
+            <input id="nights" tabindex="2" type="number" min="0" max="40" name="nights" value=1>
+          </div>
+
+          <div class="field">
+            <label>Departure</label>
+            <input type="date" tabindex="-1" id="departure_date" readonly="readonly"></input>
+          </div>
+        </div>
+        <div class="one field">
+          <label>Unit</label>
+          <select class="ui dropdown">
+            <option value="">Caravan</option>
+            <option value="1">Fully Serviced Caravan</option>
+            <option value="0">Tent & Car</option>
+          </select>
+        </div>
+        <div class="one field">
+          <label>Available Pitches</label>
+          <select class="ui dropdown">
+            <option value="">Homefield 1</option>
+            <option value="1">Homefield 2</option>
+            <option value="0">Homefield 3</option>
+          </select>
+        </div>
+        <h4>Party Members</h4>
+        <div class="three fields">
+          <div class="field">
+            <label>Adults</label>
+            <input id="adults" tabindex="2" type="number" min="0" max="40" name="nights" value=2>
+          </div>
+          <div class="field">
+            <label>Children</label>
+            <input id="children" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+          </div>
+          <div class="field">
+            <label>Infants</label>
+            <input id="infants" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+          </div>
+        </div>
+        <h4>Add Ons</h4>
+        <div class="three fields">
+          <div class="field">
+            <label>Type</label>
+            <select class="ui dropdown">
+            <option value="">Caravan</option>
+            <option value="1">Motorcaravan</option>
+            <option value="0">Trailer Tent</option>
+          </select>
+          </div>
+          <div class="field">
+            <label>Extra Car</label>
+            <input id="extra-car" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+          </div>
+          <div class="field">
+            <label>Gazebo</label>
+            <input id="gazebo" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+          </div>
+        </div>
+
+        <h4>Cost Breakdown</h4>
+        <div class="five fields">
+          <div class="field">
+            <label>Base</label> £5.00
+          </div>
+          <div class="field">
+            <label>Party</label> £10.00
+          </div>
+          <div class="field">
+            <label>Add On</label> £5.00
+          </div>
+          <div class="field">
+            <label>Discount</label> £2.50
+          </div>
+          <div class="field">
+            <label>Total</label> £17.50
+          </div>
+        </div>
+        <h4>Payment</h4>
+          <div class="field">
+            <select class="ui dropdown">
+            <option value="">Make Deposit Payment</option>
+            <option value="1">Make Full Payment</option>
+            <option value="2">Make Partial Payment</option>
+            <option value="3">Full Payment Received: Cash</option>
+            <option value="4">Full Payment Received: Card</option>
+          </select>
+         </div>
+      <div class="inline fields">
+        <label>Print label after adding?</label>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="frequency">
+            <label>Yes</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="frequency" checked="checked">
+            <label>No</label>
+          </div>
+        </div>
+        </div>
+    <div class="two fields">
+        <div class="field">
+          <button id="clear_form" tabindex="8" value="cancel" class="fluid ui negative button" name="cancel" type="submit">Clear Form</button>
+      </div>
+      <div class="field">
+          <button id="add_booking" tabindex="8" value="add_booking" class="fluid ui positive button" name="add_booking" type="submit">Quick Add to Anytime</button>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="eight wide column">
+        <div class="three fields">
+          <div class="eight wide field">
+            <label>Marketing Source</label>
+            <select class="ui dropdown">
+              <option value="">Been Before</option>
+              <option value="1">Google</option>
+              <option value="0">TripAdvisor</option>
+            </select>
+          </div>
+          <div class="eight wide field">
+            <label>Vehicle Reg</label>
+            <input tabindex="2" type="text" name="vehicle_reg" value="">
+          </div>
+        </div>
+        <div class="three fields">
+          <div class="four wide field">
+            <label>Title</label>
+            <select class="ui dropdown">
+              <option value="">Mr</option>
+              <option value="1">Mrs</option>
+              <option value="0">Miss</option>
+            </select>
+          </div>
+          <div class="four wide field">
+            <label>First Name</label>
+            <input tabindex="2" type="text" name="first_name" value="">
+          </div>
+          <div class="eight wide field">
+            <label>Surname</label>
+            <input tabindex="1" type="text" name="surname" value="" autofocus>
+          </div>
+        </div>
+        <div class="one field">
+          <label>Email Address</label>
+          <input tabindex="1" type="text" name="email_address" value="">
+        </div>
+        <div class="two fields">
+          <div class="four wide field">
+            <label>Postcode</label>
+            <input tabindex="2" type="text" name="postcode" value="">
+          </div>
+          <div class="twelve wide field">
+            <label>Action</label>
+            <button id="find_address" tabindex="7" value="find_address" class="fluid ui button" name="find_address" type="submit">Look Up Address</button>
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <input tabindex="2" type="text" name="address_1" value="" placeholder="Address 1">
+          </div>
+          <div class="field">
+            <input tabindex="2" type="text" name="address_2" value="" placeholder="Address 2">
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <input tabindex="2" type="text" name="town_city" value="" placeholder="Town/City">
+          </div>
+          <div class="field">
+            <input tabindex="2" type="text" name="county" value="" placeholder="County">
+          </div>
+        </div>
+        <div class="one field">
+          <label>Country</label>
+          <select class="ui dropdown">
+            <option value="">United Kingdom</option>
+            <option value="1">France</option>
+            <option value="0">Germany</option>
+          </select>
+        </div>
+        <div class="three fields">
+          <div class="field">
+            <label>Mobile Phone</label>
+            <input tabindex="2" type="text" name="mobile_phone" value="">
+          </div>
+          <div class="field">
+            <label>Home Phone</label>
+            <input tabindex="2" type="text" name="home_phone" value="">
+          </div>
+          <div class="field">
+            <label>Work Phone</label>
+            <input tabindex="2" type="text" name="work_phone" value="">
+          </div>
+        </div>
+        <div class="one field">
+          <label>GDPR Permission</label>
+          <select class="ui dropdown">
+            <option value="">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div class="one field">
+          <label>Customer Note</label>
+          <textarea rows="3"></textarea>
+        </div>
+        <div class="one field">
+          <label>Admin Note</label>
+          <textarea rows="3"></textarea>
+        </div>
+        <div class="one field">
+          <label>Housekeeping Note</label>
+          <textarea rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
