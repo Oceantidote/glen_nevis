@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   skip_after_action :verify_authorized
+  before_action :set_booking, only: [:print]
 
   def new
     @booking = Booking.new
@@ -18,9 +19,16 @@ class BookingsController < ApplicationController
     end
   end
 
+  def print
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:first_name, :last_name, :arrival, :departure)
+    params.require(:booking).permit(:first_name, :last_name, :arrival, :departure, :vehicle_reg, :adults, :children, :infants)
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 end
