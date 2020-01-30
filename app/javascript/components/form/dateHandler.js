@@ -3,7 +3,8 @@ import moment from 'moment'
 
 export const dateHandler = () => {
   flatpickr('#arrival_date', {
-    dateFormat: 'd/m/Y'
+    dateFormat: 'd/m/Y',
+    minDate: Date.now()
   })
   $('#arrival_cal').focusout(updateDeparture)
   $('#nights').change(updateDeparture)
