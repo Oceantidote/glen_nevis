@@ -15,9 +15,9 @@
       </a>
     </div>
   </h1>
-  <form class="ui form" method="post" id="quick_book" action="#">
+  <form class="ui form" method="post" id="quick_book" action="<%= bookings_path %>">
     <div class="ui two column stackable grid container">
-
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div class="eight wide column">
         <div class="three fields">
           <div class="field">
@@ -25,18 +25,18 @@
             <div id="arrival_cal" class="ui calendar">
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
-                <input id="arrival_date" tabindex="-1" type="string" placeholder="Arrival Date" value="" name="arrival_date"></input>
+                <input id="arrival_date" tabindex="-1" type="string" placeholder="Arrival Date" value="" name="[booking]arrival"></input>
               </div>
             </div>
           </div>
           <div class="field">
             <label>Nights</label>
-            <input id="nights" tabindex="2" type="number" min="0" max="40" name="nights" value=1>
+            <input id="nights" tabindex="2" type="number" min="0" max="40" name="[booking]nights" value=1>
           </div>
 
           <div class="field">
             <label>Departure</label>
-            <input type="date" tabindex="-1" id="departure_date" readonly="readonly"></input>
+            <input type="date" tabindex="-1" id ="departure_date" name="[booking]departure" readonly="readonly"></input>
           </div>
         </div>
         <div class="one field">
@@ -59,15 +59,15 @@
         <div class="three fields">
           <div class="field">
             <label>Adults</label>
-            <input id="adults" tabindex="2" type="number" min="0" max="40" name="nights" value=2>
+            <input id="adults" tabindex="2" type="number" min="0" max="40" name="[booking]adults" value=2>
           </div>
           <div class="field">
             <label>Children</label>
-            <input id="children" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+            <input id="children" tabindex="2" type="number" min="0" max="40" name="[booking]children" value=0>
           </div>
           <div class="field">
             <label>Infants</label>
-            <input id="infants" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+            <input id="infants" tabindex="2" type="number" min="0" max="40" name="[booking]infants" value=0>
           </div>
         </div>
         <h4>Add Ons</h4>
@@ -82,11 +82,11 @@
           </div>
           <div class="field">
             <label>Extra Car</label>
-            <input id="extra-car" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+            <input id="extra-car" tabindex="2" type="number" min="0" max="40" name="[booking]extra_car" value=0>
           </div>
           <div class="field">
             <label>Gazebo</label>
-            <input id="gazebo" tabindex="2" type="number" min="0" max="40" name="nights" value=0>
+            <input id="gazebo" tabindex="2" type="number" min="0" max="40" name="[booking]gazebo" value=0>
           </div>
         </div>
 
@@ -122,13 +122,13 @@
           <label>Print label after adding?</label>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="frequency">
+              <input type="radio" name="[booking]print" value="true">
               <label>Yes</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="frequency" checked="checked">
+              <input type="radio" name="[booking]print" checked="checked" value="false">
               <label>No</label>
             </div>
           </div>
@@ -156,7 +156,7 @@
           </div>
           <div class="eight wide field">
             <label>Vehicle Reg</label>
-            <input tabindex="2" type="text" name="vehicle_reg" value="">
+            <input tabindex="2" type="text" name="[booking]vehicle_reg" value="">
           </div>
         </div>
         <div class="three fields">
@@ -170,21 +170,21 @@
           </div>
           <div class="four wide field">
             <label>First Name</label>
-            <input tabindex="2" type="text" name="first_name" value="">
+            <input tabindex="2" type="text" name="[booking]first_name" value="">
           </div>
           <div class="eight wide field">
             <label>Surname</label>
-            <input tabindex="1" type="text" name="surname" value="" autofocus>
+            <input tabindex="1" type="text" name="[booking]last_name" value="" autofocus>
           </div>
         </div>
         <div class="one field">
           <label>Email Address</label>
-          <input tabindex="1" type="text" name="email_address" value="">
+          <input tabindex="1" type="text" name="[booking]email" value="">
         </div>
         <div class="two fields">
           <div class="four wide field">
             <label>Postcode</label>
-            <input tabindex="2" type="text" name="postcode" value="">
+            <input tabindex="2" type="text" name="[booking]postcode" value="">
           </div>
           <div class="twelve wide field">
             <label>Action</label>
@@ -193,18 +193,18 @@
         </div>
         <div class="two fields">
           <div class="field">
-            <input tabindex="2" type="text" name="address_1" value="" placeholder="Address 1">
+            <input tabindex="2" type="text" name="[booking]address_1" value="" placeholder="Address 1">
           </div>
           <div class="field">
-            <input tabindex="2" type="text" name="address_2" value="" placeholder="Address 2">
+            <input tabindex="2" type="text" name="[booking]address_2" value="" placeholder="Address 2">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
-            <input tabindex="2" type="text" name="town_city" value="" placeholder="Town/City">
+            <input tabindex="2" type="text" name="[booking]town_city" value="" placeholder="Town/City">
           </div>
           <div class="field">
-            <input tabindex="2" type="text" name="county" value="" placeholder="County">
+            <input tabindex="2" type="text" name="[booking]county" value="" placeholder="County">
           </div>
         </div>
         <div class="one field">
@@ -218,15 +218,15 @@
         <div class="three fields">
           <div class="field">
             <label>Mobile Phone</label>
-            <input tabindex="2" type="text" name="mobile_phone" value="">
+            <input tabindex="2" type="text" name="[booking]mobile_phone" value="">
           </div>
           <div class="field">
             <label>Home Phone</label>
-            <input tabindex="2" type="text" name="home_phone" value="">
+            <input tabindex="2" type="text" name="[booking]home_phone" value="">
           </div>
           <div class="field">
             <label>Work Phone</label>
-            <input tabindex="2" type="text" name="work_phone" value="">
+            <input tabindex="2" type="text" name="[booking]work_phone" value="">
           </div>
         </div>
         <div class="one field">

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, skip: [:registrations, :passwords]
-  resources :bookings, only: [:new]
+  resources :bookings, only: [:new, :create] do
+    member do
+      get :print
+    end
+  end
   authenticated :user do
     root 'bookings#new', as: :home
   end
