@@ -1,5 +1,6 @@
 import { dateHandler } from './form/dateHandler'
 import { clearFormHandler } from './form/clearFormHandler'
+import { postcodeSearchHandler } from './form/postcodeSearchHandler'
 
 export const initForm = () => {
   const form = document.getElementById('quick_book')
@@ -8,4 +9,5 @@ export const initForm = () => {
   }
   dateHandler()
   clearFormHandler()
+  postcodeSearchHandler()
 }

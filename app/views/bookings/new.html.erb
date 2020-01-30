@@ -184,35 +184,39 @@
         <div class="two fields">
           <div class="four wide field">
             <label>Postcode</label>
-            <input tabindex="2" type="text" name="[booking]postcode" value="">
+            <input tabindex="2" type="text" name="[booking]postcode" value="" id="postcode">
           </div>
           <div class="twelve wide field">
             <label>Action</label>
             <button id="find_address" tabindex="7" value="find_address" class="fluid ui button" name="find_address" type="submit">Look Up Address</button>
           </div>
         </div>
-        <div class="two fields">
-          <div class="field">
-            <input tabindex="2" type="text" name="[booking]address_1" value="" placeholder="Address 1">
-          </div>
-          <div class="field">
-            <input tabindex="2" type="text" name="[booking]address_2" value="" placeholder="Address 2">
+        <div class="four wide column">
+          <div class="address-holder">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]town_city" value="" placeholder="Town/City">
+            <input tabindex="2" type="text" name="[booking]address_1" value="" placeholder="Address 1" id="address_1">
           </div>
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]county" value="" placeholder="County">
+            <input tabindex="2" type="text" name="[booking]address_2" value="" placeholder="Address 2" id="address_2">
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <input tabindex="2" type="text" name="[booking]town_city" value="" placeholder="Town/City" id="city">
+          </div>
+          <div class="field">
+            <input tabindex="2" type="text" name="[booking]county" value="" placeholder="County" id="county">
           </div>
         </div>
         <div class="one field">
           <label>Country</label>
-          <select class="ui dropdown">
-            <option value="">United Kingdom</option>
-            <option value="1">France</option>
-            <option value="0">Germany</option>
+          <select class="ui dropdown" id="country">
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
           </select>
         </div>
         <div class="three fields">
