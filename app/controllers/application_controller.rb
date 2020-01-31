@@ -17,4 +17,12 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller?
   end
+
+  def anytime_headers
+    {
+      Authorization: "Bearer #{ENV['ANYTIME_API_KEY']}",
+      Accept: 'application/json;version=1.1;sandbox',
+      'Content-Type': 'application/json'
+    }
+  end
 end

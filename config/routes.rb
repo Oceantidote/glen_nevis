@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :bookings, only: [:new, :create] do
     member do
       get :print
+      get :payment
+      post :payment, to: 'bookings#process_payment'
+    end
+    collection do
+      get :fetch_merchant_key
     end
   end
   authenticated :user do
