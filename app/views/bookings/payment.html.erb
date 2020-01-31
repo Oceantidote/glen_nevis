@@ -1,0 +1,73 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
+  <script src="https://pi-test.sagepay.com/api/v1/js/sagepay.js"></script>
+<% end %>
+
+<div class="ui container">
+  <form action="<%= payment_booking_path(@booking) %>" method="post" class="ui form" id="card-form" autocomplete='off'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="field">
+      <label for="card-name">Cardholder Name</label>
+      <input type="text" id="name" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="number">Card Number</label>
+      <input type="text" id="number" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="expiry">Expiry Date</label>
+      <input type="text" id="expiry" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="code">Security Code</label>
+      <input type="password" id="code" autocomplete="off">
+    </div>
+    <input type="hidden" id="key" name="key">
+    <input type="hidden" id="identifier" name="identifier">
+    <div class="field">
+      <button id="make_payment" value="make_payment" class="fluid ui positive button" name="make_payment" type="submit">Pay</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  let sessionKey = ""
+  $(document).ready(() => {
+    fetchMerchantSessionKey()
+    setInterval(fetchMerchantSessionKey, 60000);
+    $('#make_payment').click(createCardIdentifier)
+  })
+  const fetchMerchantSessionKey = () => {
+    $.get('/bookings/fetch_merchant_key', ({ merchantSessionKey }) => {
+      sessionKey = merchantSessionKey
+      $('#key').val(merchantSessionKey)
+    })
+  }
+  const createCardIdentifier = e => {
+    e.preventDefault()
+    const cardholderName = $('#name').val()
+    const cardNumber = $('#number').val()
+    const expiryDate = $('#expiry').val()
+    const securityCode = $('#code').val()
+    sagepayOwnForm({ merchantSessionKey: sessionKey })
+      .tokeniseCardDetails({
+        cardDetails: {
+          cardholderName,
+          cardNumber,
+          expiryDate,
+          securityCode
+        },
+        onTokenised: ({ success, errors, cardIdentifier }) => {
+          if (success) {
+            $('#identifier').val(cardIdentifier)
+            $('#card-form').submit()
+          } else {
+            fetchMerchantSessionKey()
+            alert(JSON.stringify(errors))
+          }
+        }
+      })
+  }
+</script>

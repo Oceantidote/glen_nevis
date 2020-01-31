@@ -1,7 +1,7 @@
 <% content_for :head do %>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
 <% end %>
 
 <div class="ui container">
@@ -42,9 +42,11 @@
         <div class="one field">
           <label>Unit</label>
           <select class="ui dropdown">
-            <option value="">Caravan</option>
-            <option value="1">Fully Serviced Caravan</option>
-            <option value="0">Tent & Car</option>
+            <% @units.each do |unit| %>
+              <% unit['subunits'].each do |subunit| %>
+                <option value="<%= subunit['id'] %>"><%= subunit['name'] %>(<%= unit['name'] %>)</option>
+              <% end %>
+            <% end %>
           </select>
         </div>
         <div class="one field">
@@ -112,8 +114,8 @@
         <div class="field">
           <select class="ui dropdown">
             <option value="">Make Deposit Payment</option>
-            <option value="1">Make Full Payment</option>
-            <option value="2">Make Partial Payment</option>
+            <option value="1">Paid Deposit via Cash/Card</option>
+            <option value="2">Make Full Payment</option>
             <option value="3">Full Payment Received: Cash</option>
             <option value="4">Full Payment Received: Card</option>
           </select>
