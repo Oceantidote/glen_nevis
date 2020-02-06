@@ -41,20 +41,18 @@
         </div>
         <div class="one field">
           <label>Unit</label>
-          <select class="ui dropdown">
-            <% @units.each do |unit| %>
-              <% unit['subunits'].each do |subunit| %>
-                <option value="<%= subunit['id'] %>"><%= subunit['name'] %>(<%= unit['name'] %>)</option>
+          <select class="ui dropdown" id="unit-dropdown">
+            <option value="" disabled selected></option>
+            <% @categories.each do |category| %>
+              <% category['units'].each do |unit| %>
+                <option value="<%= unit['id'] %>"><%= unit['name'] %> (<%= category['name'] %>)</option>
               <% end %>
             <% end %>
           </select>
         </div>
         <div class="one field">
           <label>Available Pitches</label>
-          <select class="ui dropdown">
-            <option value="">Homefield 1</option>
-            <option value="1">Homefield 2</option>
-            <option value="0">Homefield 3</option>
+          <select class="ui dropdown" disabled id="subunit-dropdown">
           </select>
         </div>
         <h4>Party Members</h4>

@@ -7,9 +7,9 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @categories = category_get.reverse
     @units = unit_post([0])
-    subunits = unit_post(@units.map { |unit| unit['id'] })
-    attach_subunits_to_units(@units, subunits)
+    attach_units_to_categories(@categories, @units)
   end
 
   def create
@@ -98,9 +98,14 @@ class BookingsController < ApplicationController
     JSON.parse(response.body)
   end
 
-  def attach_subunits_to_units(units, subunits)
-    units.map do |unit|
-      unit['subunits'] = subunits.select { |subunit| subunit['parent_id'] == unit['id'] }
+  def category_get
+    response = RestClient.get('https://api.anytimebooking.eu/category', anytime_headers)
+    JSON.parse(response.body)
+  end
+
+  def attach_units_to_categories(categories, units)
+    categories.map do |category|
+      category['units'] = units.select { |unit| unit['category_id'] == category['id'] }
     end
   end
 
