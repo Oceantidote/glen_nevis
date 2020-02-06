@@ -1,13 +1,18 @@
-import { dateHandler } from './form/dateHandler'
-import { clearFormHandler } from './form/clearFormHandler'
-import { postcodeSearchHandler } from './form/postcodeSearchHandler'
+import {
+  dateHandler,
+  clearFormHandler,
+  postcodeSearchHandler,
+  unitSelectHandler
+} from './form'
 
 export const initForm = () => {
   const form = document.getElementById('quick_book')
   if (!form) {
     return
   }
+
   dateHandler()
   clearFormHandler()
   postcodeSearchHandler()
+  unitSelectHandler()
 }
