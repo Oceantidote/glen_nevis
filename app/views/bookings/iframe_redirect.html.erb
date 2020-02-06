@@ -1,0 +1,5 @@
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    window.top.location.href = '<%= Rails.env.prroduction? ? booking_url(@booking) : "http://localhost:3000#{booking_path(@booking)}" %>'
+  })
+</script>

@@ -1,0 +1,9 @@
+<% if @payment_response %>
+  <% if @payment_response['statusCode'] == '0000' %>
+    <h4>Payment was successful</h4>
+  <% else %>
+    <h4>Payment was unsuccessful</h4>
+    <%= link_to 'Try again?', payment_booking_path(@booking) %>
+  <% end %>
+<% end %>
+<h1>Booking details go here!</h1>

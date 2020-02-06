@@ -1,0 +1,12 @@
+<form action="<%= @url %>" method="post" id="pa-form">
+    <input type="hidden" name="PaReq" value="<%= @pa_req %>">
+    <input type="hidden" name="TermUrl" value="<%= Rails.env.production? ? callback_booking_url(@booking) : "#{ENV['NGROK_URL']}#{callback_booking_path(@booking)}" %>">
+    <input type="hidden" name="MD" value="<%= @booking.payment_reference %>">
+</form>
+
+<script>
+  form = document.querySelector('#pa-form')
+  document.addEventListener('DOMContentLoaded', () => {
+    form.submit()
+  })
+</script>
