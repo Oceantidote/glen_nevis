@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
       'Content-Type': 'application/json'
     }
   end
+
+  def default_url_options
+    if Rails.env.production?
+      {host: ENV['HOST']}
+    else
+      {}
+    end
+  end
 end
