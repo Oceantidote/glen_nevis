@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @categories = category_get.reverse
+    @agents = agents_get.reverse
     @units = unit_post([0])
     attach_units_to_categories(@categories, @units)
   end
@@ -100,6 +101,11 @@ class BookingsController < ApplicationController
 
   def category_get
     response = RestClient.get('https://api.anytimebooking.eu/category', anytime_headers)
+    JSON.parse(response.body)
+  end
+
+  def agents_get
+    response = RestClient.get('https://api.anytimebooking.eu/agent', anytime_headers)
     JSON.parse(response.body)
   end
 

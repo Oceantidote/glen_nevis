@@ -149,9 +149,9 @@
           <div class="eight wide field">
             <label>Marketing Source</label>
             <select class="ui dropdown">
-              <option value="">Been Before</option>
-              <option value="1">Google</option>
-              <option value="0">TripAdvisor</option>
+              <% @agents.each do |agent| %>
+                <option value="<%= agent['id'] %>"><%= agent['name'] %></option>
+              <% end %>
             </select>
           </div>
           <div class="eight wide field">
