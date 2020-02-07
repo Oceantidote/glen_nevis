@@ -2,7 +2,8 @@ import {
   dateHandler,
   clearFormHandler,
   postcodeSearchHandler,
-  unitSelectHandler
+  unitSelectHandler,
+  emailEntryHandler
 } from './form'
 
 export const initForm = () => {
@@ -10,7 +11,7 @@ export const initForm = () => {
   if (!form) {
     return
   }
-
+  emailEntryHandler()
   dateHandler()
   clearFormHandler()
   postcodeSearchHandler()
