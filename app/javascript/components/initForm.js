@@ -5,7 +5,8 @@ import {
   unitSelectHandler,
   emailEntryHandler,
   postcodeButtonEnabler,
-  priceHandler
+  priceHandler,
+  totalUpdater
 } from './form'
 
 export const initForm = () => {
@@ -20,4 +21,5 @@ export const initForm = () => {
   unitSelectHandler()
   postcodeButtonEnabler()
   priceHandler()
+  totalUpdater()
 }

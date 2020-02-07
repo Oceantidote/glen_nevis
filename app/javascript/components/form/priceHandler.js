@@ -12,7 +12,7 @@ export const priceHandler = () => {
     })
     const data = await response.json()
     document.getElementById('base').innerHTML = priceFormatter.format(data[0]['rate'])
-    console.log(data[0]['rate'])
+    $('#base').val(data[0]['rate']*100)
   })
 }
 
