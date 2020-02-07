@@ -30,6 +30,14 @@ export const emailEntryHandler = () => {
         )
       }
       catch {
+        try {
+          document.querySelectorAll('.loqate-btn').forEach((i) => {
+            i.remove()
+          })
+        }
+        catch {
+
+        }
       }
     }
   })
