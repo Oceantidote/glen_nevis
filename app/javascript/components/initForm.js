@@ -7,8 +7,8 @@ import {
   emailEntryHandler,
   postcodeButtonEnabler,
   priceHandler,
-  totalUpdater
-
+  totalUpdater,
+  extrasHandler
 } from './form'
 
 export const initForm = () => {
@@ -25,4 +25,5 @@ export const initForm = () => {
   postcodeButtonEnabler()
   priceHandler()
   totalUpdater()
+  extrasHandler()
 }

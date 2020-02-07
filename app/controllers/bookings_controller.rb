@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     @categories = category_get.reverse
     @agents = agents_get.reverse
     @units = unit_post([0])
+    @extras = extras_get.to_json
     attach_units_to_categories(@categories, @units)
   end
 
@@ -101,6 +102,11 @@ class BookingsController < ApplicationController
 
   def category_get
     response = RestClient.get('https://api.anytimebooking.eu/category', anytime_headers)
+    JSON.parse(response.body)
+  end
+
+  def extras_get
+    response = RestClient.get('https://api.anytimebooking.eu/extras', anytime_headers)
     JSON.parse(response.body)
   end
 

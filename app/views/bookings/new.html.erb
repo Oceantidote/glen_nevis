@@ -70,8 +70,9 @@
             <input id="infants" tabindex="2" type="number" min="0" max="40" name="[booking]infants" value=0>
           </div>
         </div>
-        <h4>Add Ons</h4>
-        <div class="three fields">
+        <h4 id="extras" data-extras="<%= @extras %>">Add Ons</h4>
+        <div id="addons"></div>
+        <!-- <div class="three fields">
           <div class="field">
             <label>Type</label>
             <select class="ui dropdown">
@@ -88,7 +89,7 @@
             <label>Gazebo</label>
             <input id="gazebo" tabindex="2" type="number" min="0" max="40" name="[booking]gazebo" value=0>
           </div>
-        </div>
+        </div> -->
 
         <h4>Cost Breakdown</h4>
         <div class="five fields">
