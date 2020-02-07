@@ -2,7 +2,8 @@ import {
   dateHandler,
   clearFormHandler,
   postcodeSearchHandler,
-  unitSelectHandler
+  unitSelectHandler,
+  availabilityHandler
 } from './form'
 
 export const initForm = () => {
@@ -15,4 +16,5 @@ export const initForm = () => {
   clearFormHandler()
   postcodeSearchHandler()
   unitSelectHandler()
+  availabilityHandler()
 }
