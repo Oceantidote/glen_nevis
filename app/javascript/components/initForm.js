@@ -4,7 +4,8 @@ import {
   postcodeSearchHandler,
   unitSelectHandler,
   emailEntryHandler,
-  postcodeButtonEnabler
+  postcodeButtonEnabler,
+  priceHandler
 } from './form'
 
 export const initForm = () => {
@@ -18,4 +19,5 @@ export const initForm = () => {
   postcodeSearchHandler()
   unitSelectHandler()
   postcodeButtonEnabler()
+  priceHandler()
 }
