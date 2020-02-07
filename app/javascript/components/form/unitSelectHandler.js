@@ -14,10 +14,11 @@ export const unitSelectHandler = () => {
 
     $('#subunit-dropdown').empty()
     if (data.length > 0) {
+      $('#subunit-dropdown').append(
+        '<option value="" disabled selected></option>'
+      )
       data.forEach(subunit => {
-        $('#subunit-dropdown')
-          .removeAttr('disabled')
-          .append('<option value="" disabled selected></option>')
+        $('#subunit-dropdown').removeAttr('disabled')
         const option = `<option value="${subunit.id}">${subunit.name}</option>`
         $('#subunit-dropdown').append(option)
       })
