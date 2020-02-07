@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_120036) do
+ActiveRecord::Schema.define(version: 2020_02_07_165238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,24 @@ ActiveRecord::Schema.define(version: 2020_02_06_120036) do
     t.integer "infants"
     t.string "payment_reference"
     t.string "transaction_id"
+    t.integer "unit_id"
+    t.integer "subunit_id"
+    t.integer "price_cents"
+    t.string "payment_type"
+    t.integer "marketing_source_id"
+    t.string "email"
+    t.string "postcode"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "county"
+    t.string "country"
+    t.string "mobile_phone"
+    t.string "home_phone"
+    t.string "work_phone"
+    t.boolean "gdpr"
+    t.string "customer_note"
+    t.string "admin_note"
   end
 
   create_table "users", force: :cascade do |t|
