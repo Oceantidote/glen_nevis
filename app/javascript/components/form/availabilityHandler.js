@@ -18,6 +18,7 @@ export const checkAvailability = async () => {
     'YYYY-MM-DD'
   )
   const departure = $('#departure_date').val()
+  if (!departure) return
   const response = await fetch('https://api.anytimebooking.eu/availability', {
     method: 'POST',
     headers: anytimeHeaders,
@@ -28,7 +29,7 @@ export const checkAvailability = async () => {
     })
   })
 
-  const data = await response.text()
+  const data = await response.json()
 
   console.log(data)
 }
