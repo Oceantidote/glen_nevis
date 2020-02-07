@@ -8,7 +8,8 @@ import {
   postcodeButtonEnabler,
   priceHandler,
   totalUpdater,
-  extrasHandler
+  extrasHandler,
+  datePriceHandler
 } from './form'
 
 export const initForm = () => {
@@ -26,4 +27,5 @@ export const initForm = () => {
   priceHandler()
   totalUpdater()
   extrasHandler()
+  datePriceHandler()
 }
