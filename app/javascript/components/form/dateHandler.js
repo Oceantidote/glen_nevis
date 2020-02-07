@@ -6,7 +6,7 @@ export const dateHandler = () => {
     dateFormat: 'd/m/Y',
     minDate: Date.now()
   })
-  $('#arrival_cal').focusout(updateDeparture)
+  $('#arrival_cal').change(updateDeparture)
   $('#nights').change(updateDeparture)
 }
 

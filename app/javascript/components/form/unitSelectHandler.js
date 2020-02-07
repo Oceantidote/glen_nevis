@@ -1,4 +1,5 @@
 import { anytimeHeaders } from './anytimeHeaders'
+import { checkAvailability } from './availabilityHandler'
 
 export const unitSelectHandler = () => {
   $('#unit-dropdown').change(async e => {
@@ -23,5 +24,7 @@ export const unitSelectHandler = () => {
     } else {
       $('#subunit-dropdown').attr('disabled', true)
     }
+
+    checkAvailability()
   })
 }
