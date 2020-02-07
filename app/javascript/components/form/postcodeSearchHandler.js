@@ -13,7 +13,7 @@ export const postcodeSearchHandler = () => {
   })
 }
 
-const handlePostcodeFindResponse = ({ Items }) => {
+export const handlePostcodeFindResponse = ({ Items }) => {
   if (Items.length < 1) {
     // Respond to nothing found
   } else {

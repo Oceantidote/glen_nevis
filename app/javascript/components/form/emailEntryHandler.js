@@ -1,4 +1,5 @@
 import { anytimeHeaders } from './anytimeHeaders'
+import { handlePostcodeFindResponse } from './postcodeSearchHandler'
 
 export const emailEntryHandler = () => {
   $('#email').keyup(async e => {
@@ -10,23 +11,28 @@ export const emailEntryHandler = () => {
           email: e.currentTarget.value
         })
       })
-      const data = await response.json()
-      console.log(data)
+      // try {
+        const email_response = await response.json()
+        console.log(email_response)
+        const response_two = await fetch(`https://api.anytimebooking.eu/user/${email_response["id"]}`, {
+          method: 'GET',
+          headers: anytimeHeaders
+        })
+        const user_response = await response_two.json()
+        $('#postcode').val(user_response['zip'])
+        $.post(
+          'https://api.addressy.com/Capture/Interactive/Find/v1.10/json3.ws',
+          {
+            Key: process.env.LOQATE_API_KEY,
+            Text: user_response['zip']
+          },
+          handlePostcodeFindResponse
+        )
+      // }
+      // catch {
+      //   console.log("no match")
+      // }
     }
-    // const data = await response.json()
-    // console.log(data)
-    // $('#subunit-dropdown').empty()
-    // if (data.length > 0) {
-    //   data.forEach(subunit => {
-    //     $('#subunit-dropdown')
-    //       .removeAttr('disabled')
-    //       .append('<option value="" disabled selected></option>')
-    //     const option = `<option value="${subunit.id}">${subunit.name}</option>`
-    //     $('#subunit-dropdown').append(option)
-    //   })
-    // } else {
-    //   $('#subunit-dropdown').attr('disabled', true)
-    // }
   })
 }
 
