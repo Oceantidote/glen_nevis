@@ -31,7 +31,7 @@ export const checkAvailability = async () => {
 
   const data = await response.json()
 
-  console.log(data)
+  updateAvailabilities(data)
 }
 
 const populateIds = ids => {
@@ -42,6 +42,41 @@ const populateIds = ids => {
       .children()
       .each((_i, child) => {
         if (child.value) ids.push(Number(child.value))
+      })
+  }
+}
+
+const updateAvailabilities = data => {
+  $('.unit-availability-holder').empty()
+  if ($('#subunit-dropdown').attr('disabled')) {
+    if (data.length === 0 || data.find(avail => avail.level === 0)) {
+      $('.unit-availability-holder').append('<h6>Unit Unavailable</h6>')
+    }
+  } else {
+    $('#subunit-dropdown')
+      .children('option')
+      .each((_i, option) => {
+        if (!option.value) return
+        const unitData = data.filter(
+          avail => avail.unit_id === Number(option.value)
+        )
+        if (
+          unitData.length === 0 ||
+          unitData.find(avail => avail.level === 0)
+        ) {
+          const text = option.textContent
+          if (text.match(/unavailable/)) return
+          $(option)
+            .attr('disabled', true)
+            .text(`${text} -unavailable-`)
+        } else {
+          const text = option.textContent
+            .replace(/\s\-unavailable\-/, '')
+            .trim()
+          $(option)
+            .removeAttr('disabled')
+            .text(text)
+        }
       })
   }
 }
