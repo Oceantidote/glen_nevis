@@ -6,6 +6,7 @@ export const availabilityHandler = () => {
     input: () => {
       if (!$('#unit-dropdown').val()) return
 
+      $('#subunit-dropdown').val('')
       setTimeout(checkAvailability, 100)
     }
   })
