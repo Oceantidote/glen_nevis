@@ -3,10 +3,12 @@ import {
   clearFormHandler,
   postcodeSearchHandler,
   unitSelectHandler,
+  availabilityHandler,
   emailEntryHandler,
   postcodeButtonEnabler,
   priceHandler,
   totalUpdater
+
 } from './form'
 
 export const initForm = () => {
@@ -19,6 +21,7 @@ export const initForm = () => {
   clearFormHandler()
   postcodeSearchHandler()
   unitSelectHandler()
+  availabilityHandler()
   postcodeButtonEnabler()
   priceHandler()
   totalUpdater()
