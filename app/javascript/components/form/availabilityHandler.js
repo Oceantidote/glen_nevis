@@ -64,18 +64,13 @@ const updateAvailabilities = data => {
           unitData.length === 0 ||
           unitData.find(avail => avail.level === 0)
         ) {
-          const text = option.textContent
-          if (text.match(/unavailable/)) return
           $(option)
             .attr('disabled', true)
-            .text(`${text} -unavailable-`)
+            .attr('hidden', true)
         } else {
-          const text = option.textContent
-            .replace(/\s\-unavailable\-/, '')
-            .trim()
           $(option)
             .removeAttr('disabled')
-            .text(text)
+            .removeAttr('hidden')
         }
       })
   }
