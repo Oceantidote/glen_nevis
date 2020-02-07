@@ -16,3 +16,15 @@
 .users-table {
   padding-bottom: 20px;
 }
+.address-holder {
+  max-height: 400px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+}
+.address-holder::-webkit-scrollbar {
+  display: none;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
