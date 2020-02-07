@@ -12,14 +12,11 @@ export const totalUpdater = () => {
 
 const updateTotal = () => {
   setTimeout(function(){
-    //do what you need here
     let a = parseInt($('#base').val())
     let b = parseInt($('#party').val())
     let c = parseInt($('#addon').val())
     let d = -parseInt($('#discount').val())
-    const values = [a,b,c,d]
-    const sum = values.reduce((a, b) => a + b, 0)
-    console.log(sum)
+    const sum = a + b + c + d
     $('#total').val(sum)
     document.getElementById('total').innerHTML = priceFormatter.format(sum/100)
   }, 50);
