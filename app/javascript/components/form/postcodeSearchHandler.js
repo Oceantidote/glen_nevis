@@ -13,7 +13,7 @@ export const postcodeSearchHandler = () => {
   })
 }
 
-const handlePostcodeFindResponse = ({ Items }) => {
+export const handlePostcodeFindResponse = ({ Items }) => {
   if (Items.length < 1) {
     // Respond to nothing found
   } else {
@@ -41,6 +41,16 @@ const handleAddressFindResponse = ({ Items }) => {
     })
     $('.address-holder').append(button)
   })
+  if (Items.length == 0) {
+    let button = $('<button></button>')
+      .text("No address found")
+      .addClass(['fluid', 'ui', 'secondary', 'button', 'loqate-btn'])
+    $(button).click(e => {
+      document.getElementById("address-holder").innerHTML = ""
+      $("#postcode").val("")
+    })
+    $('.address-holder').append(button)
+  }
 }
 
 const retrieveAddress = (Id, Text, Type) => {

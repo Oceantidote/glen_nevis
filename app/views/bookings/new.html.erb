@@ -93,19 +93,19 @@
         <h4>Cost Breakdown</h4>
         <div class="five fields">
           <div class="field">
-            <label>Base</label> £5.00
+            <label>Base</label><span class="sums" id="base">£0.00</span>
           </div>
           <div class="field">
-            <label>Party</label> £10.00
+            <label>Party</label><span class="sums" id="party">£0.00</span>
           </div>
           <div class="field">
-            <label>Add On</label> £5.00
+            <label>Add On</label><span class="sums" id="addon">£0.00</span>
           </div>
           <div class="field">
-            <label>Discount</label> £2.50
+            <label>Discount</label><span class="sums" id="discount">£0.00</span>
           </div>
           <div class="field">
-            <label>Total</label> £17.50
+            <label>Total</label><span id="total">£0.00</span>
           </div>
         </div>
         <h4>Payment</h4>
@@ -179,7 +179,7 @@
         </div>
         <div class="one field">
           <label>Email Address</label>
-          <input tabindex="1" type="text" name="[booking]email" value="">
+          <input tabindex="1" type="text" name="[booking]email" value="" id="email">
         </div>
         <div class="two fields">
           <div class="four wide field">
@@ -188,11 +188,11 @@
           </div>
           <div class="twelve wide field">
             <label>Action</label>
-            <button id="find_address" tabindex="7" value="find_address" class="fluid ui button" name="find_address" type="submit">Look Up Address</button>
+            <button id="find_address" tabindex="7" value="find_address" class="disabled fluid ui button" name="find_address" type="submit">Look Up Address</button>
           </div>
         </div>
         <div class="four wide column">
-          <div class="address-holder">
+          <div class="address-holder" id="address-holder">
           </div>
         </div>
         <div class="two fields">
