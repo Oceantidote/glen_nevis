@@ -11,7 +11,7 @@ export const emailEntryHandler = () => {
           email: e.currentTarget.value
         })
       })
-      // try {
+      try {
         const email_response = await response.json()
         console.log(email_response)
         const response_two = await fetch(`https://api.anytimebooking.eu/user/${email_response["id"]}`, {
@@ -28,10 +28,9 @@ export const emailEntryHandler = () => {
           },
           handlePostcodeFindResponse
         )
-      // }
-      // catch {
-      //   console.log("no match")
-      // }
+      }
+      catch {
+      }
     }
   })
 }
