@@ -32,7 +32,7 @@ export const extrasHandler = () => {
       const checkbox = `<input class='addon-checkbox' type='checkbox' ${ele['mandatory_flag'] == 1 ? 'checked' : ''}></input>`
       const sel_length = types[ele['name']].length > 0
       const select = `<select class="addon-select">${types[ele['name']].map(x => `<option value=${x}>${x}</option>`)}</select>`
-      let addon_form = `<div class='addon' data-id='${ele['id']}' data-rate='${rate}'><div class='addon-lhs'><div class='addon-name'>${ele['name']}</div><div class='addon-desc'>${ele['description']}</div></div><div class='addon-rhs'>${checkbox}${sel_length ? select : ''}${formatted_rate}</div></div>`
+      let addon_form = `<div class='addon' data-id='${ele['id']}' data-rate='${rate}'><div class='addon-lhs'><div class='addon-name'>${ele['name']}</div><div class='addon-desc'>${ele['description']}</div></div><div class='addon-rhs'>${checkbox}${sel_length ? select : ''}${formatted_rate == '£0.00' ? '' : formatted_rate}</div></div>`
       $('#addons').append(addon_form)
     })
     updatePrices()
@@ -48,7 +48,7 @@ export const extrasHandler = () => {
 const updatePrices = () => {
   let sum = 0
   document.querySelectorAll('.addon').forEach(ele => {
-    if (ele.childNodes[1].childNodes[0].checked) {
+    if (ele.childNodes[1].childNodes[0].checked && ele.childNodes[0].childNodes[0].innerHTML != "Type of unit") {
       sum += parseInt(ele.childNodes[1].childNodes[1].value) * parseInt(ele.dataset.rate)
     }
   })
