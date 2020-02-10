@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.extras = convert_extras
     if @booking.save
+      data = booking_put
       if params.dig(:booking, :print) == 'true'
         redirect_to print_booking_path(@booking)
       else
@@ -168,6 +169,8 @@ class BookingsController < ApplicationController
   def booking_put
     response = RestClient.put('https://api.anytimebooking.eu/booking', @booking.to_submit.to_json, anytime_headers)
     JSON.parse(response.body)
+  rescue => e
+    raise
   end
 
   def attach_units_to_categories(categories, units)
