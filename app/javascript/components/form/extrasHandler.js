@@ -72,15 +72,22 @@ const updatePrices = () => {
     }
   })
   $('#addon').val(sum)
+  $('#add_on_cents').val(sum)
   $('#addon').html(priceFormatter.format(sum / 100))
 }
 
 const updateInput = () => {
   const input = $('#extras-input')
-  let string = ""
+  let string = ''
   document.querySelectorAll('.addon').forEach(ele => {
     if (ele.childNodes[1].childNodes[0].checked) {
-      let new_string = "|" + ele.dataset.id + "," + ele.childNodes[1].childNodes[1].value + "," + (ele.dataset.rate / 100)
+      let new_string =
+        '|' +
+        ele.dataset.id +
+        ',' +
+        ele.childNodes[1].childNodes[1].value +
+        ',' +
+        ele.dataset.rate / 100
       string += new_string
     }
   })

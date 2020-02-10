@@ -29,7 +29,7 @@ class Booking < ApplicationRecord
       }, payment: {
         amount: price_cents/100.to_f,
         type: 1
-      }
+      }, extras: JSON.parse(extras)
     }
     add_customer(hash)
     hash
