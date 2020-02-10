@@ -66,6 +66,10 @@ GEM
     byebug (11.1.1)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
+    countries (3.0.0)
+      i18n_data (~> 0.8.0)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
     crass (1.0.6)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -91,6 +95,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    i18n_data (0.8.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     listen (3.0.8)
@@ -185,6 +190,7 @@ GEM
     simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    sixarm_ruby_unaccent (1.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -206,6 +212,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
+    unicode_utils (1.4.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.1)
@@ -228,6 +235,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
+  countries
   devise
   dotenv-rails
   font-awesome-sass (~> 5.6.1)
