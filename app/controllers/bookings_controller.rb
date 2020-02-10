@@ -129,7 +129,9 @@ class BookingsController < ApplicationController
                                     :customer_note,
                                     :admin_note,
                                     :housekeeping_note,
-                                    :customer_id)
+                                    :customer_id,
+                                    :print,
+                                    :nights)
   end
 
   def set_booking
