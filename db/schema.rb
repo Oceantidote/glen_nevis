@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_165238) do
+ActiveRecord::Schema.define(version: 2020_02_10_124711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,11 @@ ActiveRecord::Schema.define(version: 2020_02_07_165238) do
     t.boolean "gdpr"
     t.string "customer_note"
     t.string "admin_note"
+    t.integer "base_cents"
+    t.integer "party_cents"
+    t.integer "add_on_cents"
+    t.integer "discount_cents"
+    t.string "housekeeping_note"
   end
 
   create_table "users", force: :cascade do |t|

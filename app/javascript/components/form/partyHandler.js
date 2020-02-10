@@ -36,6 +36,7 @@ export const partyHandler = () => {
       const formattedTotal = priceFormatter.format(total / 100)
 
       $('#party').val(total)
+      $('#party_cents').val(total)
       $('#party').text(formattedTotal)
     }
   })

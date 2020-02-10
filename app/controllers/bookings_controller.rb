@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    raise
     if @booking.save
       if params.dig(:booking, :print) == 'true'
         redirect_to print_booking_path(@booking)
@@ -86,7 +87,36 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:first_name, :last_name, :arrival, :departure, :vehicle_reg, :adults, :children, :infants)
+    params.require(:booking).permit(:first_name,
+                                    :last_name,
+                                    :email,
+                                    :arrival,
+                                    :departure,
+                                    :vehicle_reg,
+                                    :adults,
+                                    :children,
+                                    :infants,
+                                    :base_cents,
+                                    :party_cents,
+                                    :add_on_cents,
+                                    :discount_cents,
+                                    :price_cents,
+                                    :unit_id,
+                                    :subunit_id,
+                                    :marketing_source_id,
+                                    :address1,
+                                    :address2,
+                                    :postcode,
+                                    :city,
+                                    :county,
+                                    :country,
+                                    :mobile_phone,
+                                    :work_phone,
+                                    :home_phone,
+                                    :gdpr,
+                                    :customer_note,
+                                    :admin_note,
+                                    :housekeeping_note)
   end
 
   def set_booking
