@@ -1,3 +1,4 @@
+require 'active_support'
 class ApplicationController < ActionController::Base
   include Pundit
 

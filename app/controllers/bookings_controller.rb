@@ -11,6 +11,8 @@ class BookingsController < ApplicationController
     @agents = agents_get.reverse
     @units = unit_post([0])
     @extras = extras_get.to_json
+    @prices = extras_prices_post.to_json
+    @mid_year = Date.today.beginning_of_year + 6.months
     attach_units_to_categories(@categories, @units)
   end
 
@@ -107,6 +109,14 @@ class BookingsController < ApplicationController
 
   def extras_get
     response = RestClient.get('https://api.anytimebooking.eu/extras', anytime_headers)
+    JSON.parse(response.body)
+  end
+
+  def extras_prices_post
+    response = RestClient.post('https://api.anytimebooking.eu/extras/pricing', {
+      from_date: Date.today.beginning_of_year,
+      to_date: Date.today.end_of_year }.to_json,
+      anytime_headers)
     JSON.parse(response.body)
   end
 
