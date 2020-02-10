@@ -21,7 +21,7 @@ export const updateInput = () => {
           '|' +
           ele.dataset.id +
           ',' +
-          ele.childNodes[1].childNodes[1].value * $('#nights') +
+          ele.childNodes[1].childNodes[1].value * $('#nights').val() +
           ',' +
           ele.dataset.rate / 100
         string += new_string
