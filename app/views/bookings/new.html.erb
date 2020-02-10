@@ -41,7 +41,7 @@
         </div>
         <div class="one field">
           <label>Unit</label>
-          <select class="ui dropdown party-price" id="unit-dropdown">
+          <select class="ui dropdown party-price" id="unit-dropdown" name="[booking]unit_id">
             <option value="" disabled selected></option>
             <% @categories.each do |category| %>
               <% category['units'].each do |unit| %>
@@ -53,7 +53,7 @@
         <div class="one unit-availability-holder"></div>
         <div class="one field">
           <label>Available Pitches</label>
-          <select class="ui dropdown" disabled id="subunit-dropdown">
+          <select class="ui dropdown" disabled id="subunit-dropdown" name="[booking]subunit_id">
           </select>
         </div>
         <h4>Party Members</h4>
@@ -96,18 +96,23 @@
         <div class="five fields">
           <div class="field">
             <label>Base</label><span class="sums" id="base">£0.00</span>
+            <input type="hidden" name="[booking]base_cents" id="base_cents" value="0">
           </div>
           <div class="field">
             <label>Party</label><span class="sums" id="party">£0.00</span>
+            <input type="hidden" name="[booking]party_cents" id="party_cents" value="0">
           </div>
           <div class="field">
             <label>Add On</label><span class="sums" id="addon">£0.00</span>
+            <input type="hidden" name="[booking]add_on_cents" id="add_on_cents" value="0">
           </div>
           <div class="field">
             <label>Discount</label><span class="sums" id="discount">£0.00</span>
+            <input type="hidden" name="[booking]discount_cents" id="discount_cents" value="0">
           </div>
           <div class="field">
             <label>Total</label><span id="total">£0.00</span>
+            <input type="hidden" name="[booking]price_cents" id="price_cents" value="0">
           </div>
         </div>
         <h4>Payment</h4>
@@ -150,7 +155,7 @@
         <div class="three fields">
           <div class="eight wide field">
             <label>Marketing Source</label>
-            <select class="ui dropdown">
+            <select class="ui dropdown" name="[booking]marketing_source_id">
               <% @agents.each do |agent| %>
                 <option value="<%= agent['id'] %>"><%= agent['name'] %></option>
               <% end %>
@@ -199,27 +204,22 @@
         </div>
         <div class="two fields">
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]address_1" value="" placeholder="Address 1" id="address_1">
+            <input tabindex="2" type="text" name="[booking]address1" value="" placeholder="Address 1" id="address_1">
           </div>
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]address_2" value="" placeholder="Address 2" id="address_2">
+            <input tabindex="2" type="text" name="[booking]address2" value="" placeholder="Address 2" id="address_2">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]town_city" value="" placeholder="Town/City" id="city">
+            <input tabindex="2" type="text" name="[booking]city" value="" placeholder="Town/City" id="city">
           </div>
           <div class="field">
             <input tabindex="2" type="text" name="[booking]county" value="" placeholder="County" id="county">
           </div>
         </div>
         <div class="one field">
-          <label>Country</label>
-          <select class="ui dropdown" id="country">
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="France">France</option>
-            <option value="Germany">Germany</option>
-          </select>
+          <input id="country" name="[booking]country" placeholder="Country">
         </div>
         <div class="three fields">
           <div class="field">
@@ -237,22 +237,22 @@
         </div>
         <div class="one field">
           <label>GDPR Permission</label>
-          <select class="ui dropdown">
-            <option value="">No</option>
-            <option value="1">Yes</option>
+          <select class="ui dropdown" name="[booking]gdpr">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
           </select>
         </div>
         <div class="one field">
           <label>Customer Note</label>
-          <textarea rows="3"></textarea>
+          <textarea rows="3" name="[booking]customer_note"></textarea>
         </div>
         <div class="one field">
           <label>Admin Note</label>
-          <textarea rows="3"></textarea>
+          <textarea rows="3"name="[booking]admin_note"></textarea>
         </div>
         <div class="one field">
           <label>Housekeeping Note</label>
-          <textarea rows="3"></textarea>
+          <textarea rows="3" name="[booking]housekeeping_note"></textarea>
         </div>
       </div>
     </div>

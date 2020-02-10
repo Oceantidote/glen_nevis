@@ -18,7 +18,7 @@ export const priceHandler = () => {
 }
 
 export const datePriceHandler = () => {
-  $('#arrival_date').on('change',async function(e){
+  $('#arrival_date').on('change', async function(e) {
     let unit_id = $('#unit-dropdown').val()
     if (unit_id) {
       const response = await fetch('https://api.anytimebooking.eu/price', {
@@ -32,7 +32,7 @@ export const datePriceHandler = () => {
       dealWithData(data)
     }
   })
-  $('#nights').on('change',async function(e){
+  $('#nights').on('change', async function(e) {
     let unit_id = $('#unit-dropdown').val()
     if (unit_id) {
       const response = await fetch('https://api.anytimebooking.eu/price', {
@@ -48,29 +48,32 @@ export const datePriceHandler = () => {
   })
 }
 
-
 const dealWithData = data => {
   const arrival = moment($('#arrival_date').val(), 'DD/MM/YYYY').format(
     'YYYY-MM-DD'
   )
   const departure = $('#departure_date').val()
-  var itr = moment.twix(new Date(arrival),new Date(departure)).iterate("days");
-  var range=[];
-  while(itr.hasNext()){
-      range.push(itr.next().toDate())
+  var itr = moment.twix(new Date(arrival), new Date(departure)).iterate('days')
+  var range = []
+  while (itr.hasNext()) {
+    range.push(itr.next().toDate())
   }
   range.shift()
   let prices = []
   range.forEach(date => {
-    let price = data.filter( x => new Date(x['day']) <= new Date(date) && new Date(x['day2']) >= new Date(date))
+    let price = data.filter(
+      x =>
+        new Date(x['day']) <= new Date(date) &&
+        new Date(x['day2']) >= new Date(date)
+    )
     try {
       prices.push(price[0]['rate'])
-    }
-    catch {
+    } catch {
       prices.push(data[0]['rate'])
     }
   })
   let sum = prices.reduce((a, b) => a + b, 0)
   document.getElementById('base').innerHTML = priceFormatter.format(sum)
-  $('#base').val(sum*100)
+  $('#base').val(sum * 100)
+  $('#base_cents').val(sum * 100)
 }

@@ -3,7 +3,6 @@ import { priceFormatter } from './priceFormatter'
 export const partyHandler = () => {
   $('.party-price').on({
     change: () => {
-      console.log('fired!')
       let unitId = $('#unit-dropdown').val()
       if (!unitId) return
 
@@ -37,6 +36,7 @@ export const partyHandler = () => {
       const formattedTotal = priceFormatter.format(total / 100)
 
       $('#party').val(total)
+      $('#party_cents').val(total)
       $('#party').text(formattedTotal)
     }
   })
