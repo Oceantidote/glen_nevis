@@ -3,6 +3,10 @@ import { checkAvailability } from './availabilityHandler'
 
 export const unitSelectHandler = () => {
   $('#unit-dropdown').change(async e => {
+    $('#category_id').val(
+      $(e.currentTarget).children(`option[value="${e.currentTarget.value}"]`)[0]
+        .dataset.category
+    )
     const response = await fetch('https://api.anytimebooking.eu/unit', {
       method: 'POST',
       headers: anytimeHeaders,

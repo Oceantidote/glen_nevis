@@ -104,6 +104,7 @@ class BookingsController < ApplicationController
                                     :price_cents,
                                     :unit_id,
                                     :subunit_id,
+                                    :category_id,
                                     :marketing_source_id,
                                     :address1,
                                     :address2,
