@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @booking.extras = convert_extras
     if @booking.save
       if params.dig(:booking, :print) == 'true'
         redirect_to print_booking_path(@booking)
@@ -109,6 +110,7 @@ class BookingsController < ApplicationController
                                     :address1,
                                     :address2,
                                     :postcode,
+                                    :extras,
                                     :city,
                                     :county,
                                     :country,
@@ -205,6 +207,15 @@ class BookingsController < ApplicationController
       Authorization: "Basic #{base64_encode_sp_creds}",
       'Content-type': 'application/json'
     }
+  end
+
+  def convert_extras
+    array = booking_params[:extras].split("|")[1..-1].map do |extra|
+      values = extra.split(',')
+      value = (values[1].to_i != 0 && values[1] != "0") || values[1] == "0" ? values[1].to_i : values[1]
+      { extra_id: values[0], value: value, cost: values[2].to_f }
+    end
+    array.to_json
   end
 
   def allow_iframe_requests

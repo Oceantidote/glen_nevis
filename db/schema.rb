@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_153553) do
     t.integer "discount_cents"
     t.string "housekeeping_note"
     t.integer "category_id"
+    t.string "extras"
   end
 
   create_table "users", force: :cascade do |t|
