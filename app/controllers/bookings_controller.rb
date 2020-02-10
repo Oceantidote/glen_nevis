@@ -19,7 +19,6 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.extras = convert_extras
-    raise
     if @booking.save
       if params.dig(:booking, :print) == 'true'
         redirect_to print_booking_path(@booking)
