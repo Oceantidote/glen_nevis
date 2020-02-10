@@ -1,5 +1,7 @@
 import flatpickr from 'flatpickr'
 import moment from 'moment'
+import { updatePrices } from './updatePrices'
+import { updateInput } from './updateInput'
 
 export const dateHandler = () => {
   flatpickr('#arrival_date', {
@@ -7,7 +9,11 @@ export const dateHandler = () => {
     minDate: Date.now()
   })
   $('#arrival_cal').change(updateDeparture)
+  $('#arrival_cal').change(updatePrices)
+  $('#arrival_cal').change(updateInput)
   $('#nights').change(updateDeparture)
+  $('#nights').change(updateInput)
+  $('#nights').change(updatePrices)
 }
 
 const updateDeparture = () => {
