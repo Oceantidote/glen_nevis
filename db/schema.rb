@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_154446) do
+
+ActiveRecord::Schema.define(version: 2020_02_10_153553) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_154446) do
     t.integer "add_on_cents"
     t.integer "discount_cents"
     t.string "housekeeping_note"
+    t.integer "category_id"
     t.string "extras"
     t.integer "customer_id"
   end
