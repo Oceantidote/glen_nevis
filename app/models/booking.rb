@@ -16,6 +16,7 @@ class Booking < ApplicationRecord
         category_id: category_id,
         unit_id: subunit_id || unit_id,
         arrival: arrival.strftime('%Y-%m-%d'),
+        balance_due: arrival.strftime('%Y-%m-%d'),
         departure: departure.strftime('%Y-%m-%d'),
         referral_id: marketing_source_id,
         party_size: adults + children + infants,
