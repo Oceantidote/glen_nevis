@@ -26,6 +26,13 @@ class BookingsController < ApplicationController
         redirect_to home_path
       end
     else
+      @categories = category_get.reverse
+      @referrals = referrals_get.reverse
+      @units = unit_post([0])
+      @extras = extras_get.to_json
+      @prices = extras_prices_post.to_json
+      @mid_year = Date.today.beginning_of_year + 6.months
+      attach_units_to_categories(@categories, @units)
       render :new
     end
   end
@@ -216,7 +223,7 @@ class BookingsController < ApplicationController
   end
 
   def convert_extras
-    array = booking_params[:extras].split("|")[1..-1].map do |extra|
+    array = booking_params[:extras].split("|")[1..-1]&.map do |extra|
       values = extra.split(',')
       value = (values[1].to_i != 0 && values[1] != "0") || values[1] == "0" ? values[1].to_i : values[1]
       { extra_id: values[0], value: value, cost: values[2].to_f }
