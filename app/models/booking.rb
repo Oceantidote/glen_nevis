@@ -14,6 +14,7 @@ class Booking < ApplicationRecord
       base: {
         site_id: 0,
         agent: 15,
+        provisional_flag: false,
         category_id: category_id,
         unit_id: subunit_id || unit_id,
         arrival: arrival.strftime('%Y-%m-%d'),
