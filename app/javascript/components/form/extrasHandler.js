@@ -1,5 +1,6 @@
 import { priceFormatter } from './priceFormatter'
-
+import { updateInput } from './updateInput'
+import { updatePrices } from './updatePrices'
 export const extrasHandler = () => {
   const extras = $('#extras').data('extras')
   const prices = $('#extras').data('prices')
@@ -59,37 +60,3 @@ export const extrasHandler = () => {
   })
 }
 
-const updatePrices = () => {
-  let sum = 0
-  document.querySelectorAll('.addon').forEach(ele => {
-    if (
-      ele.childNodes[1].childNodes[0].checked &&
-      ele.childNodes[0].childNodes[0].innerHTML != 'Type of unit'
-    ) {
-      sum +=
-        parseInt(ele.childNodes[1].childNodes[1].value) *
-        parseInt(ele.dataset.rate)
-    }
-  })
-  $('#addon').val(sum)
-  $('#add_on_cents').val(sum)
-  $('#addon').html(priceFormatter.format(sum / 100))
-}
-
-const updateInput = () => {
-  const input = $('#extras-input')
-  let string = ''
-  document.querySelectorAll('.addon').forEach(ele => {
-    if (ele.childNodes[1].childNodes[0].checked) {
-      let new_string =
-        '|' +
-        ele.dataset.id +
-        ',' +
-        ele.childNodes[1].childNodes[1].value +
-        ',' +
-        ele.dataset.rate / 100
-      string += new_string
-    }
-  })
-  input.val(string)
-}
