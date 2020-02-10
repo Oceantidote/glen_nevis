@@ -12,7 +12,8 @@ class Booking < ApplicationRecord
   def to_submit
     hash= {
       base: {
-        site_id: 0,
+        custom_ref: self.id,
+        site_id: 1,
         agent: 15,
         provisional_flag: false,
         category_id: category_id,
@@ -24,6 +25,7 @@ class Booking < ApplicationRecord
         party_size: adults + children + infants,
       }, cost: {
         base_cost: base_cents/100.to_f,
+        agent_fee: 0,
         party_cost: party_cents/100.to_f,
         addon_cost: add_on_cents/100.to_f,
         discount_cost: discount_cents/100.to_f,
