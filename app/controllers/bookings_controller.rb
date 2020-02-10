@@ -119,7 +119,8 @@ class BookingsController < ApplicationController
                                     :gdpr,
                                     :customer_note,
                                     :admin_note,
-                                    :housekeeping_note)
+                                    :housekeeping_note,
+                                    :customer_id)
   end
 
   def set_booking
