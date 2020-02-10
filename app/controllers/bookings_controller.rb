@@ -158,6 +158,11 @@ class BookingsController < ApplicationController
     JSON.parse(response.body)
   end
 
+  def booking_put
+    response = RestClient.put('https://api.anytimebooking.eu/booking', @booking.to_submit.to_json, anytime_headers)
+    JSON.parse(response.body)
+  end
+
   def attach_units_to_categories(categories, units)
     categories.map do |category|
       category['units'] = units.select { |unit| unit['category_id'] == category['id'] }
