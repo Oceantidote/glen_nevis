@@ -45,10 +45,11 @@
             <option value="" disabled selected></option>
             <% @categories.each do |category| %>
               <% category['units'].each do |unit| %>
-                <option value="<%= unit['id'] %>"><%= unit['name'] %> (<%= category['name'] %>)</option>
+                <option data-category="<%= category['id'] %>" value="<%= unit['id'] %>"><%= unit['name'] %> (<%= category['name'] %>)</option>
               <% end %>
             <% end %>
           </select>
+          <input type="hidden" id="category_id" name="[booking]category_id" value="<%= @categories[0]['id'] %>">
         </div>
         <div class="one unit-availability-holder"></div>
         <div class="one field">
