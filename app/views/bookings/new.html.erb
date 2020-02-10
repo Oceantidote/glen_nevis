@@ -31,7 +31,7 @@
           </div>
           <div class="field">
             <label>Nights</label>
-            <input id="nights" tabindex="2" type="number" min="0" max="40" name="[booking]nights" value=1 class="availability-update">
+            <input id="nights" tabindex="2" type="number" min="0" max="40" name="[booking]nights" value=1 class="availability-update party-price">
           </div>
 
           <div class="field">
@@ -41,7 +41,7 @@
         </div>
         <div class="one field">
           <label>Unit</label>
-          <select class="ui dropdown" id="unit-dropdown">
+          <select class="ui dropdown party-price" id="unit-dropdown">
             <option value="" disabled selected></option>
             <% @categories.each do |category| %>
               <% category['units'].each do |unit| %>
@@ -60,15 +60,15 @@
         <div class="three fields">
           <div class="field">
             <label>Adults</label>
-            <input id="adults" tabindex="2" type="number" min="0" max="40" name="[booking]adults" value=2>
+            <input class="party-price" id="adults" tabindex="2" type="number" min="0" max="40" name="[booking]adults" value=2>
           </div>
           <div class="field">
             <label>Children</label>
-            <input id="children" tabindex="2" type="number" min="0" max="40" name="[booking]children" value=0>
+            <input class="party-price" id="children" tabindex="2" type="number" min="0" max="40" name="[booking]children" value=0>
           </div>
           <div class="field">
             <label>Infants</label>
-            <input id="infants" tabindex="2" type="number" min="0" max="40" name="[booking]infants" value=0>
+            <input class="party-price" id="infants" tabindex="2" type="number" min="0" max="40" name="[booking]infants" value=0>
           </div>
         </div>
         <h4 id="extras" data-extras="<%= @extras %>">Add Ons</h4>
