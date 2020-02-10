@@ -3,7 +3,6 @@ import { priceFormatter } from './priceFormatter'
 export const partyHandler = () => {
   $('.party-price').on({
     change: () => {
-      console.log('fired!')
       let unitId = $('#unit-dropdown').val()
       if (!unitId) return
 
