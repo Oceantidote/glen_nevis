@@ -5,19 +5,22 @@ export const totalUpdater = () => {
   $('#party').val(0)
   $('#addon').val(0)
   $('#discount').val(0)
-  $('.sums').on('DOMSubtreeModified',function(e){
+  $('.sums').on('DOMSubtreeModified', function(e) {
     updateTotal()
   })
 }
 
 const updateTotal = () => {
-  setTimeout(function(){
+  setTimeout(function() {
     let a = parseInt($('#base').val())
     let b = parseInt($('#party').val())
     let c = parseInt($('#addon').val())
     let d = -parseInt($('#discount').val())
     const sum = a + b + c + d
     $('#total').val(sum)
-    document.getElementById('total').innerHTML = priceFormatter.format(sum/100)
-  }, 50);
+    document.getElementById('total').innerHTML = priceFormatter.format(
+      sum / 100
+    )
+    $('#price_cents').val(sum)
+  }, 50)
 }
