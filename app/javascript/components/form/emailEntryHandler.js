@@ -13,7 +13,7 @@ export const emailEntryHandler = () => {
       })
       try {
         const email_response = await response.json()
-        console.log(email_response)
+        $('#customer_id').val(email_response['id'])
         const response_two = await fetch(`https://api.anytimebooking.eu/user/${email_response["id"]}`, {
           method: 'GET',
           headers: anytimeHeaders
