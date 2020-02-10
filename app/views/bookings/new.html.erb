@@ -158,8 +158,8 @@
           <div class="eight wide field">
             <label>Marketing Source</label>
             <select class="ui dropdown" name="[booking]marketing_source_id">
-              <% @agents.each do |agent| %>
-                <option value="<%= agent['id'] %>"><%= agent['name'] %></option>
+              <% @referrals.each do |referral| %>
+                <option value="<%= referral['id'] %>"><%= referral['name'] %></option>
               <% end %>
             </select>
           </div>

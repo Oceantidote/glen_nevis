@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @categories = category_get.reverse
-    @agents = agents_get.reverse
+    @referrals = referrals_get.reverse
     @units = unit_post([0])
     @extras = extras_get.to_json
     @prices = extras_prices_post.to_json
@@ -153,8 +153,8 @@ class BookingsController < ApplicationController
     JSON.parse(response.body)
   end
 
-  def agents_get
-    response = RestClient.get('https://api.anytimebooking.eu/agent', anytime_headers)
+  def referrals_get
+    response = RestClient.post('https://api.anytimebooking.eu/referral',{}, anytime_headers)
     JSON.parse(response.body)
   end
 
