@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
   before_create :upcase_vehicle_reg
-  validates :arrival, :departure, :first_name, :last_name, :unit_id, :subunit_id, :email, :postcode, :address1, :country, :base_cents, :party_cents, :add_on_cents, :discount_cents, :price_cents, presence: true
+  validates :arrival, :departure, :first_name, :last_name, :unit_id, :email, :postcode, :address1, :country, :base_cents, :party_cents, :add_on_cents, :discount_cents, :price_cents, presence: true
   def upcase_vehicle_reg
     self[:vehicle_reg] = vehicle_reg.upcase
   end
@@ -23,7 +23,10 @@ class Booking < ApplicationRecord
         departure: departure.strftime('%Y-%m-%d'),
         referral_id: marketing_source_id,
         party_size: adults + children + infants,
-      }, cost: {
+        note: ''
+      },
+      customer: add_customer,
+      cost: {
         base_cost: base_cents/100.to_f,
         agent_fee: 0,
         party_cost: party_cents/100.to_f,
@@ -35,21 +38,27 @@ class Booking < ApplicationRecord
         type: 1
       }, extras: JSON.parse(extras)
     }
-    add_customer(hash)
-    hash
   end
 
-  def add_customer(hash)
-    hash[:customer] = {
-      first_name: first_name,
-      last_name: last_name,
-      address1: address1,
-      address2: address2,
-      zip: postcode,
-      state:  county,
-      country: ISO3166::Country.find_country_by_name(country).alpha2,
-      phone: home_phone,
-      mobile: mobile_phone
-    }
+  def add_customer
+    if customer_id.nil?
+      {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        address1: address1,
+        address2: address2,
+        city: city,
+        zip: postcode,
+        state:  county,
+        country: ISO3166::Country.find_country_by_name(country).alpha2,
+        phone: home_phone,
+        mobile: mobile_phone
+      }
+    else
+      {
+        id: customer_id
+      }
+    end
   end
 end

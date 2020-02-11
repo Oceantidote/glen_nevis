@@ -21,7 +21,6 @@ class BookingsController < ApplicationController
     @booking.extras = convert_extras
     if @booking.save
       data = booking_put
-      raise
       if params.dig(:booking, :print) == 'true'
         redirect_to print_booking_path(@booking)
       else
