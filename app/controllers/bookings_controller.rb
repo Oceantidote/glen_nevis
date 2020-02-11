@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
       if params.dig(:booking, :print) == 'true'
         redirect_to print_booking_path(@booking)
       else
-        redirect_to home_path
+        redirect_to booking_path(@booking)
       end
     else
       @categories = category_get.reverse
