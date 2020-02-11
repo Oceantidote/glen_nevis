@@ -3,12 +3,7 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
 <% end %>
-<ul>
-  <% @booking.errors.messages.each do |e| %>
-    <li><%= e[0] %></li>
-  <% end %>
 
-</ul>
 <div class="ui container">
   <h1 class="ui header center aligned">
     <div class="content">
@@ -62,9 +57,8 @@
         <div class="one unit-availability-holder"></div>
         <div class="one field">
           <label>Available Pitches</label>
-          <select data-error="subunit_id-error" class="ui dropdown req" disabled id="subunit-dropdown" name="[booking]subunit_id">
+          <select class="ui dropdown" disabled id="subunit-dropdown" name="[booking]subunit_id">
           </select>
-          <div id="subunit_id-error" class="error"><%= @booking.errors.messages[:subunit_id][0] %></div>
         </div>
         <h4>Party Members</h4>
         <div class="three fields">
