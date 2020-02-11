@@ -7,7 +7,15 @@ class Booking < ApplicationRecord
   end
 
   def set_payment_reference
-    self.update(payment_reference: "test-#{id}-#{Time.now.strftime('%Y%m%d%H%M')}")
+    self.update(payment_reference: "anytimequickbook-#{id}-#{Time.now.strftime('%Y%m%d%H%M')}")
+  end
+
+  def amount_to_pay
+    if payment_type.match?(/deposit/)
+      500
+    else
+      price_cents
+    end
   end
 
   def to_submit
@@ -35,7 +43,7 @@ class Booking < ApplicationRecord
         discount_cost: discount_cents/100.to_f,
         total_cost: price_cents/100.to_f,
       }, payment: {
-        amount: price_cents/100.to_f,
+        amount: payment_type == 'deposit' ? 5000 : price_cents/100.to_f,
         type: 1
       }, extras: JSON.parse(extras)
     }

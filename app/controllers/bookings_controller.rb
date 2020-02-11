@@ -22,7 +22,9 @@ class BookingsController < ApplicationController
     if @booking.save
       data = booking_put
       @booking.update(anytime_booking_id: data['booking_id'], anytime_booking_reference: data['booking_ref'])
-      if params.dig(:booking, :print) == 'true'
+      if !@booking.payment_type.match?(/paid/)
+        redirect_to payment_booking_path(@booking)
+      elsif params.dig(:booking, :print) == 'true'
         redirect_to print_booking_path(@booking)
       else
         redirect_to booking_path(@booking)
@@ -132,7 +134,8 @@ class BookingsController < ApplicationController
                                     :housekeeping_note,
                                     :customer_id,
                                     :print,
-                                    :nights)
+                                    :nights,
+                                    :payment_type)
   end
 
   def set_booking
@@ -197,17 +200,17 @@ class BookingsController < ApplicationController
         }
       },
       vendorTxCode: @booking.payment_reference,
-      amount: 1000,
+      amount: @booking.amount_to_pay,
       currency: 'GBP',
       description: 'Glen Nevis Holidays Booking',
       customerFirstName: @booking.first_name,
       customerLastName: @booking.last_name,
       billingAddress: {
-        address1: '138 Kingsland Road',
-        address2: '',
-        city: 'London',
-        postalCode: 'E2 8DY',
-        country: 'GB'
+        address1: @booking.address1,
+        address2: @booking.address2,
+        city: @booking.city,
+        postalCode: @booking.postcode,
+        country: ISO3166::Country.find_country_by_name(@booking.country).alpha2
       }
     }
   end

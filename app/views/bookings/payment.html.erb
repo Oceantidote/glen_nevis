@@ -6,6 +6,25 @@
 <% end %>
 
 <div class="ui container">
+  <div class="info-container">
+    <div class="info">
+      <div>
+        <h6><strong>Name:</strong></h6><h6><%= @booking.first_name %> <%= @booking.last_name %></h6>
+      </div>
+      <div>
+        <h6><strong>Address:</strong></h6><h6><%= @booking.address1 %> <%= @booking.address2 %></h6>
+      </div>
+      <div>
+        <h6><strong></strong></h6><h6><%= @booking.city %></h6>
+      </div>
+      <div>
+        <h6><strong></strong></h6><h6><%= @booking.postcode %></h6>
+      </div>
+      <div>
+        <h6><strong>Amount Due:</strong></h6><h6><%= "£#{@booking.amount_to_pay / 100.to_f}0" %></h6>
+      </div>
+    </div>
+  </div>
   <form action="<%= payment_booking_path(@booking) %>" method="post" class="ui form" id="card-form" autocomplete='off'>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <div class="field">

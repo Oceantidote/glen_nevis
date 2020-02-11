@@ -13,3 +13,19 @@
   justify-content: center;
   align-items: center;
 }
+
+.info-container {
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  width: 30%;
+  border: solid #ddd 1px;
+  padding: 20px 20px;
+  border-radius: 3px;
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
