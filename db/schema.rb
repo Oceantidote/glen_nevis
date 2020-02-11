@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2020_02_10_180014) do
     t.integer "add_on_cents"
     t.integer "discount_cents"
     t.string "housekeeping_note"
+    t.integer "category_id"
     t.string "extras"
     t.integer "customer_id"
-    t.integer "category_id"
     t.boolean "print"
     t.integer "nights"
   end
