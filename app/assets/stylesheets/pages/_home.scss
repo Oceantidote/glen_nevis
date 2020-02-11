@@ -60,6 +60,16 @@
 .error {
   color: red;
 }
+.flexy-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
 select {
   padding: 0 10px !important;
 }

@@ -24,8 +24,6 @@ class BookingsController < ApplicationController
       @booking.update(anytime_booking_id: data['booking_id'], anytime_booking_reference: data['booking_ref'])
       if !@booking.payment_type.match?(/paid/)
         redirect_to payment_booking_path(@booking)
-      elsif params.dig(:booking, :print) == 'true'
-        redirect_to print_booking_path(@booking)
       else
         redirect_to booking_path(@booking)
       end
@@ -42,6 +40,10 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @units = unit_post([0])
+    @booking_unit = @units.find{|r| r['id'] == @booking.unit_id}['name']
+    @availabilities = availabilities_post
+    raise
     if @booking.transaction_id.present?
       response = RestClient.get("https://pi-test.sagepay.com/api/v1/transactions/#{@booking.transaction_id}", sp_headers)
       @payment_response = JSON.parse(response)
@@ -163,6 +165,15 @@ class BookingsController < ApplicationController
     response = RestClient.post('https://api.anytimebooking.eu/extras/pricing', {
       from_date: Date.today.beginning_of_year,
       to_date: Date.today.end_of_year }.to_json,
+      anytime_headers)
+    JSON.parse(response.body)
+  end
+
+  def availabilities_post
+    response = RestClient.post('https://api.anytimebooking.eu/availability', {
+      from_date: @booking.arrival,
+      to_date: @booking.departure,
+      unit: [@booking.unit_id] }.to_json,
       anytime_headers)
     JSON.parse(response.body)
   end

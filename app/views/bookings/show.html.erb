@@ -1,9 +1,61 @@
-<% if @payment_response %>
-  <% if @payment_response['statusCode'] == '0000' %>
-    <h4>Payment was successful</h4>
-  <% else %>
-    <h4>Payment was unsuccessful</h4>
-    <%= link_to 'Try again?', payment_booking_path(@booking) %>
+<div class="container">
+  <% if @payment_response %>
+    <% if @payment_response['statusCode'] == '0000' %>
+      <h4>Payment was successful</h4>
+    <% else %>
+      <h4>Payment was unsuccessful</h4>
+      <%= link_to 'Try again?', payment_booking_path(@booking) %>
+    <% end %>
   <% end %>
+  <div class="flexy-row">
+    <div class="info-container">
+      <div class="info">
+        <div>
+          <h6><strong>Arrival:</strong></h6><h6><%= @booking.arrival.strftime('%d-%m-%Y') %></h6>
+        </div>
+        <div>
+          <h6><strong>Departure:</strong></h6><h6><%= @booking.departure.strftime('%d-%m-%Y') %></h6>
+        </div>
+        <div>
+          <h6><strong>Type:</strong></h6><h6><%= @booking_unit %></h6>
+        </div>
+        <div>
+          <h6><strong>Pitch:</strong></h6><h6><%= @booking.city %></h6>
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <div>
+          <h6><strong>Name:</strong></h6><h6><%= @booking.first_name %> <%= @booking.last_name %></h6>
+        </div>
+        <div>
+          <h6><strong>Email:</strong></h6><h6><%= @booking.email %></h6>
+        </div>
+        <div>
+          <h6><strong>Address:</strong></h6><h6><%= @booking.address1 %> <%= @booking.address2 %></h6>
+        </div>
+        <div>
+          <h6><strong></strong></h6><h6><%= @booking.city %></h6>
+        </div>
+        <div>
+          <h6><strong></strong></h6><h6><%= @booking.postcode %></h6>
+        </div>
+        <div>
+          <h6><strong>Amount Due:</strong></h6><h6><%= "£#{@booking.amount_to_pay / 100.to_f}0" %></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if @booking.print %>
+  <%= render 'print' %>
+<% else %>
+  <div class="flexy-row">
+    <%= link_to root_path do %>
+      <div class="btn btn-primary">
+        New Booking
+      </div>
+    <% end %>
+  </div>
 <% end %>
-<h1>Booking details go here!</h1>

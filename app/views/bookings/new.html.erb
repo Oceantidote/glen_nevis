@@ -182,25 +182,25 @@
           </div>
           <div class="four wide field">
             <label>First Name</label>
-            <input data-error="first_name-error" tabindex="2" type="text" name="[booking]first_name" class="req" value="">
+            <input data-error="first_name-error" tabindex="2" type="text" name="[booking]first_name" class="req" value="<%= @booking.first_name %>">
             <div id="first_name-error" class="error"><%= @booking.errors.messages[:first_name][0] %></div>
           </div>
           <div class="eight wide field">
             <label>Surname</label>
-            <input data-error="last_name-error" tabindex="1" type="text" name="[booking]last_name" value="" class="req" autofocus>
+            <input data-error="last_name-error" tabindex="1" type="text" name="[booking]last_name" value="<%= @booking.last_name %>" class="req" autofocus>
             <div id="last_name-error" class="error"><%= @booking.errors.messages[:last_name][0] %></div>
           </div>
         </div>
         <div class="one field">
           <label>Email Address</label>
-          <input data-error="email-error" tabindex="1" type="text" name="[booking]email" value="" id="email" class="req">
+          <input data-error="email-error" tabindex="1" type="text" name="[booking]email" value="<%= @booking.email %>" id="email" class="req">
           <div id="email-error" class="error"><%= @booking.errors.messages[:email][0] %></div>
         </div>
         <input id="customer_id" type="hidden" name="[booking]customer_id" value="">
         <div class="two fields">
           <div class="four wide field">
             <label>Postcode</label>
-            <input data-error="postcode-error" tabindex="2" type="text" name="[booking]postcode" value="" id="postcode" class="req">
+            <input data-error="postcode-error" tabindex="2" type="text" name="[booking]postcode" value="<%= @booking.postcode %>" id="postcode" class="req">
             <div id="postcode-error" class="error"><%= @booking.errors.messages[:postcode][0] %></div>
           </div>
           <div class="twelve wide field">
@@ -214,37 +214,37 @@
         </div>
         <div class="two fields">
           <div class="field">
-            <input data-error="address_1-error" tabindex="2" type="text" name="[booking]address1" value="" class="req" placeholder="Address 1" id="address_1">
+            <input data-error="address_1-error" tabindex="2" type="text" name="[booking]address1" value="<%= @booking.address1 %>" class="req" placeholder="Address 1" id="address_1">
             <div id="address_1-error" class="error"><%= @booking.errors.messages[:address1][0] %></div>
           </div>
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]address2" value="" placeholder="Address 2" id="address_2">
+            <input tabindex="2" type="text" name="[booking]address2" value="<%= @booking.address2 %>" placeholder="Address 2" id="address_2">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]city" value="" placeholder="Town/City" id="city">
+            <input tabindex="2" type="text" name="[booking]city" value="<%= @booking.city %>" placeholder="Town/City" id="city">
           </div>
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]county" value="" placeholder="County" id="county">
+            <input tabindex="2" type="text" name="[booking]county" value="<%= @booking.county %>" placeholder="County" id="county">
           </div>
         </div>
         <div class="one field">
-          <input data-error="country-error" id="country" name="[booking]country" placeholder="Country" class="req">
+          <input data-error="country-error" id="country" name="[booking]country" placeholder="Country" value="<%= @booking.country %>" class="req">
           <div id="country-error" class="error"><%= @booking.errors.messages[:country][0] %></div>
         </div>
         <div class="three fields">
           <div class="field">
             <label>Mobile Phone</label>
-            <input tabindex="2" type="text" name="[booking]mobile_phone" value="">
+            <input tabindex="2" type="text" name="[booking]mobile_phone" value="<%= @booking.mobile_phone %>">
           </div>
           <div class="field">
             <label>Home Phone</label>
-            <input tabindex="2" type="text" name="[booking]home_phone" value="">
+            <input tabindex="2" type="text" name="[booking]home_phone" value="<%= @booking.home_phone %>">
           </div>
           <div class="field">
             <label>Work Phone</label>
-            <input tabindex="2" type="text" name="[booking]work_phone" value="">
+            <input tabindex="2" type="text" name="[booking]work_phone" value="<%= @booking.work_phone %>">
           </div>
         </div>
         <div class="one field">
@@ -257,17 +257,18 @@
         </div>
         <div class="one field">
           <label>Customer Note</label>
-          <textarea rows="3" name="[booking]customer_note"></textarea>
+          <textarea rows="3" value="<%= @booking.customer_note %>" name="[booking]customer_note"></textarea>
         </div>
         <div class="one field">
           <label>Admin Note</label>
-          <textarea rows="3"name="[booking]admin_note"></textarea>
+          <textarea rows="3" name="[booking]admin_note" value="<%= @booking.admin_note %>"></textarea>
         </div>
         <div class="one field">
           <label>Housekeeping Note</label>
-          <textarea rows="3" name="[booking]housekeeping_note"></textarea>
+          <textarea rows="3" value="<%= @booking.housekeeping_note %>" name="[booking]housekeeping_note"></textarea>
         </div>
       </div>
     </div>
   </form>
 </div>
+
