@@ -10,7 +10,8 @@ import {
   totalUpdater,
   extrasHandler,
   datePriceHandler,
-  partyHandler
+  partyHandler,
+  errorRemover
 } from './form'
 
 export const initForm = () => {
@@ -30,4 +31,5 @@ export const initForm = () => {
   extrasHandler()
   datePriceHandler()
   partyHandler()
+  errorRemover()
 }

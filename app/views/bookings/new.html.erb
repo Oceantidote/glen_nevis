@@ -3,7 +3,12 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
 <% end %>
+<ul>
+  <% @booking.errors.messages.each do |e| %>
+    <li><%= e[0] %></li>
+  <% end %>
 
+</ul>
 <div class="ui container">
   <h1 class="ui header center aligned">
     <div class="content">
@@ -25,23 +30,25 @@
             <div id="arrival_cal" class="ui calendar">
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
-                <input id="arrival_date" tabindex="-1" type="string" placeholder="Arrival Date" value="" name="[booking]arrival" class="availability-update">
+                <input data-error="arrival-error" id="arrival_date" tabindex="-1" type="string" placeholder="Arrival Date" value="<%= @booking.arrival&.strftime('%d-%m-%Y') %>" name="[booking]arrival" class="availability-update req dep">
               </div>
             </div>
+            <div id="arrival-error" class="error"><%= @booking.errors.messages[:arrival][0] %></div>
           </div>
           <div class="field">
             <label>Nights</label>
-            <input id="nights" tabindex="2" type="number" min="0" max="40" name="[booking]nights" value=1 class="availability-update party-price">
+            <input id="nights" tabindex="2" type="number" min="0" max="40" name="[booking]nights" value="<%= @booking.nights || 1 %>" class="availability-update party-price dep">
           </div>
 
           <div class="field">
             <label>Departure</label>
-            <input type="date" tabindex="-1" id ="departure_date" name="[booking]departure" readonly="readonly"></input>
+            <input data-error="departure-error" type="date" value="<%= @booking.departure&.strftime('%Y-%m-%d') %>" tabindex="-1" id ="departure_date" name="[booking]departure" class="req"></input>
+            <div id="departure-error" class="error"><%= @booking.errors.messages[:departure][0] %></div>
           </div>
         </div>
         <div class="one field">
           <label>Unit</label>
-          <select class="ui dropdown party-price" id="unit-dropdown" name="[booking]unit_id">
+          <select data-error="unit_id-error" class="ui dropdown party-price req" id="unit-dropdown" name="[booking]unit_id">
             <option value="" disabled selected></option>
             <% @categories.each do |category| %>
               <% category['units'].each do |unit| %>
@@ -50,12 +57,14 @@
             <% end %>
           </select>
           <input type="hidden" id="category_id" name="[booking]category_id" value="<%= @categories[0]['id'] %>">
+          <div id="unit_id-error" class="error"><%= @booking.errors.messages[:unit_id][0] %></div>
         </div>
         <div class="one unit-availability-holder"></div>
         <div class="one field">
           <label>Available Pitches</label>
-          <select class="ui dropdown" disabled id="subunit-dropdown" name="[booking]subunit_id">
+          <select data-error="subunit_id-error" class="ui dropdown req" disabled id="subunit-dropdown" name="[booking]subunit_id">
           </select>
+          <div id="subunit_id-error" class="error"><%= @booking.errors.messages[:subunit_id][0] %></div>
         </div>
         <h4>Party Members</h4>
         <div class="three fields">
@@ -179,22 +188,26 @@
           </div>
           <div class="four wide field">
             <label>First Name</label>
-            <input tabindex="2" type="text" name="[booking]first_name" value="">
+            <input data-error="first_name-error" tabindex="2" type="text" name="[booking]first_name" class="req" value="">
+            <div id="first_name-error" class="error"><%= @booking.errors.messages[:first_name][0] %></div>
           </div>
           <div class="eight wide field">
             <label>Surname</label>
-            <input tabindex="1" type="text" name="[booking]last_name" value="" autofocus>
+            <input data-error="last_name-error" tabindex="1" type="text" name="[booking]last_name" value="" class="req" autofocus>
+            <div id="last_name-error" class="error"><%= @booking.errors.messages[:last_name][0] %></div>
           </div>
         </div>
         <div class="one field">
           <label>Email Address</label>
-          <input tabindex="1" type="text" name="[booking]email" value="" id="email">
+          <input data-error="email-error" tabindex="1" type="text" name="[booking]email" value="" id="email" class="req">
+          <div id="email-error" class="error"><%= @booking.errors.messages[:email][0] %></div>
         </div>
         <input id="customer_id" type="hidden" name="[booking]customer_id" value="">
         <div class="two fields">
           <div class="four wide field">
             <label>Postcode</label>
-            <input tabindex="2" type="text" name="[booking]postcode" value="" id="postcode">
+            <input data-error="postcode-error" tabindex="2" type="text" name="[booking]postcode" value="" id="postcode" class="req">
+            <div id="postcode-error" class="error"><%= @booking.errors.messages[:postcode][0] %></div>
           </div>
           <div class="twelve wide field">
             <label>Action</label>
@@ -207,7 +220,8 @@
         </div>
         <div class="two fields">
           <div class="field">
-            <input tabindex="2" type="text" name="[booking]address1" value="" placeholder="Address 1" id="address_1">
+            <input data-error="address_1-error" tabindex="2" type="text" name="[booking]address1" value="" class="req" placeholder="Address 1" id="address_1">
+            <div id="address_1-error" class="error"><%= @booking.errors.messages[:address1][0] %></div>
           </div>
           <div class="field">
             <input tabindex="2" type="text" name="[booking]address2" value="" placeholder="Address 2" id="address_2">
@@ -222,7 +236,8 @@
           </div>
         </div>
         <div class="one field">
-          <input id="country" name="[booking]country" placeholder="Country">
+          <input data-error="country-error" id="country" name="[booking]country" placeholder="Country" class="req">
+          <div id="country-error" class="error"><%= @booking.errors.messages[:country][0] %></div>
         </div>
         <div class="three fields">
           <div class="field">
@@ -240,10 +255,11 @@
         </div>
         <div class="one field">
           <label>GDPR Permission</label>
-          <select class="ui dropdown" name="[booking]gdpr">
+          <select data-error="gdpr-error" id="gdpr" class="ui dropdown req" name="[booking]gdpr">
             <option value="false">No</option>
-            <option value="true">Yes</option>
+            <option id="gdpr-true" value="true">Yes</option>
           </select>
+          <div id="gdpr-error" class="error"><%= @booking.errors.messages[:gdpr][0] %></div>
         </div>
         <div class="one field">
           <label>Customer Note</label>
