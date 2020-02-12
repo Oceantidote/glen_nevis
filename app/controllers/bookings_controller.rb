@@ -42,7 +42,6 @@ class BookingsController < ApplicationController
   def show
     @units = unit_post([0])
     @booking_unit = @units.find{|r| r['id'] == @booking.unit_id}['name']
-    @availabilities = availabilities_post
     if @booking.transaction_id.present?
       response = RestClient.get("https://pi-test.sagepay.com/api/v1/transactions/#{@booking.transaction_id}", sp_headers)
       @payment_response = JSON.parse(response)
@@ -136,7 +135,8 @@ class BookingsController < ApplicationController
                                     :customer_id,
                                     :print,
                                     :nights,
-                                    :payment_type)
+                                    :payment_type,
+                                    :pitch_name)
   end
 
   def set_booking
@@ -164,15 +164,6 @@ class BookingsController < ApplicationController
     response = RestClient.post('https://api.anytimebooking.eu/extras/pricing', {
       from_date: Date.today.beginning_of_year,
       to_date: Date.today.end_of_year }.to_json,
-      anytime_headers)
-    JSON.parse(response.body)
-  end
-
-  def availabilities_post
-    response = RestClient.post('https://api.anytimebooking.eu/availability', {
-      from_date: @booking.arrival,
-      to_date: @booking.departure,
-      unit: [@booking.unit_id] }.to_json,
       anytime_headers)
     JSON.parse(response.body)
   end

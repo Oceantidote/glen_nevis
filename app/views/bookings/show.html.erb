@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container p40">
   <% if @payment_response %>
     <% if @payment_response['statusCode'] == '0000' %>
       <h4>Payment was successful</h4>
@@ -10,40 +10,71 @@
   <div class="flexy-row">
     <div class="info-container">
       <div class="info">
+        <h4 class="cent">Booking</h4>
         <div>
-          <h6><strong>Arrival:</strong></h6><h6><%= @booking.arrival.strftime('%d-%m-%Y') %></h6>
+          <h6><strong>Arrival:</strong></h6><h6 class="taright"><%= @booking.arrival.strftime('%d-%m-%Y') %></h6>
         </div>
         <div>
-          <h6><strong>Departure:</strong></h6><h6><%= @booking.departure.strftime('%d-%m-%Y') %></h6>
+          <h6><strong>Departure:</strong></h6><h6 class="taright"><%= @booking.departure.strftime('%d-%m-%Y') %></h6>
         </div>
         <div>
-          <h6><strong>Type:</strong></h6><h6><%= @booking_unit %></h6>
+          <h6><strong>Type:</strong></h6><h6 class="taright"><%= @booking_unit %></h6>
         </div>
         <div>
-          <h6><strong>Pitch:</strong></h6><h6><%= @booking.city %></h6>
+          <h6><strong>Pitch:</strong></h6><h6 class="taright"><%= @booking.pitch_name %></h6>
+        </div>
+        <div>
+          <h6><strong>Anytime Booking ID:</strong></h6><h6 class="taright"><%= @booking.anytime_booking_id %></h6>
+        </div>
+        <div>
+          <h6><strong>Total:</strong></h6><h6 class="taright"><%= "£#{@booking.price_cents / 100.to_f}0" %></h6>
+        </div>
+        <div>
+          <h6><strong>Amount Paid:</strong></h6><h6 class="taright"><%= "£#{@booking.amount_to_pay / 100.to_f}0" %></h6>
+        </div>
+        <div>
+          <h6><strong>Amount Due:</strong></h6><h6 class="taright"><%= "£#{(@booking.price_cents - @booking.amount_to_pay) / 100.to_f}0" %></h6>
         </div>
       </div>
     </div>
     <div class="info-container">
       <div class="info">
+        <h4 class="cent">Customer</h4>
         <div>
-          <h6><strong>Name:</strong></h6><h6><%= @booking.first_name %> <%= @booking.last_name %></h6>
+          <h6><strong>Name:</strong></h6><h6 class="taright"><%= @booking.first_name %> <%= @booking.last_name %></h6>
         </div>
         <div>
-          <h6><strong>Email:</strong></h6><h6><%= @booking.email %></h6>
+          <h6><strong>Email:</strong></h6><h6 class="taright"><%= @booking.email %></h6>
         </div>
         <div>
-          <h6><strong>Address:</strong></h6><h6><%= @booking.address1 %> <%= @booking.address2 %></h6>
+          <h6><strong>Address:</strong></h6><h6 class="taright"><%= @booking.address1 %> <%= @booking.address2 %></h6>
         </div>
         <div>
-          <h6><strong></strong></h6><h6><%= @booking.city %></h6>
+          <h6><strong></strong></h6><h6 class="taright"><%= @booking.city %></h6>
         </div>
         <div>
-          <h6><strong></strong></h6><h6><%= @booking.postcode %></h6>
+          <h6><strong>Postcode:</strong></h6><h6 class="taright"><%= @booking.postcode %></h6>
         </div>
-        <div>
-          <h6><strong>Amount Due:</strong></h6><h6><%= "£#{@booking.amount_to_pay / 100.to_f}0" %></h6>
-        </div>
+        <% if @booking.vehicle_reg %>
+          <div>
+            <h6><strong>Vehicle Reg:</strong></h6><h6 class="taright"><%= @booking.vehicle_reg %></h6>
+          </div>
+        <% end %>
+        <% if @booking.mobile_phone %>
+          <div>
+            <h6><strong>Mobile:</strong></h6><h6 class="taright"><%= @booking.mobile_phone %></h6>
+          </div>
+        <% end %>
+        <% if @booking.home_phone %>
+          <div>
+            <h6><strong>Home:</strong></h6><h6 class="taright"><%= @booking.home_phone %></h6>
+          </div>
+        <% end %>
+        <% if @booking.work_phone %>
+          <div>
+            <h6><strong>Work:</strong></h6><h6 class="taright"><%= @booking.work_phone %></h6>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

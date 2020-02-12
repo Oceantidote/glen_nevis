@@ -17,10 +17,22 @@
 .info-container {
   display: flex;
   justify-content: center;
-  flex: 1 0 auto;
+  width: 50%;
+  margin: 10px;
   @media only screen and (max-width: 768px) {
     width: 100%;
   }
+}
+
+.taright {
+  text-align: right;
+}
+.p40 {
+  padding: 40px 0;
+}
+
+.cent {
+  text-align: center;
 }
 
 .info {
