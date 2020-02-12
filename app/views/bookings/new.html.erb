@@ -3,7 +3,6 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
 <% end %>
-
 <div class="ui container">
   <h1 class="ui header center aligned">
     <div class="content">
@@ -25,7 +24,7 @@
             <div id="arrival_cal" class="ui calendar">
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
-                <input data-error="arrival-error" id="arrival_date" tabindex="-1" type="string" placeholder="Arrival Date" value="<%= @booking.arrival&.strftime('%d-%m-%Y') %>" name="[booking]arrival" class="availability-update req dep">
+                <input data-error="arrival-error" id="arrival_date" value="<%= Date.today.strftime('%d/%m/%Y') %>" tabindex="-1" type="string" placeholder="Arrival Date" name="[booking]arrival" class="availability-update req dep">
               </div>
             </div>
             <div id="arrival-error" class="error"><%= @booking.errors.messages[:arrival][0] %></div>
@@ -37,7 +36,7 @@
 
           <div class="field">
             <label>Departure</label>
-            <input data-error="departure-error" type="date" value="<%= @booking.departure&.strftime('%Y-%m-%d') %>" tabindex="-1" id ="departure_date" name="[booking]departure" class="req"></input>
+            <input data-error="departure-error" type="date" tabindex="-1" id ="departure_date" name="[booking]departure" class="req"></input>
             <div id="departure-error" class="error"><%= @booking.errors.messages[:departure][0] %></div>
           </div>
         </div>
@@ -188,7 +187,7 @@
           </div>
           <div class="eight wide field">
             <label>Surname</label>
-            <input data-error="last_name-error" tabindex="1" type="text" name="[booking]last_name" value="<%= @booking.last_name %>" class="req" autofocus>
+            <input data-error="last_name-error" tabindex="1" type="text" name="[booking]last_name" value="<%= @booking.last_name %>" class="req">
             <div id="last_name-error" class="error"><%= @booking.errors.messages[:last_name][0] %></div>
           </div>
         </div>

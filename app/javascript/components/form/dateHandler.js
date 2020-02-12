@@ -8,6 +8,7 @@ export const dateHandler = () => {
     dateFormat: 'd/m/Y',
     minDate: Date.now()
   })
+  updateDeparture()
   $('#arrival_cal').change(updateDeparture)
   $('#arrival_cal').change(updatePrices)
   $('#arrival_cal').change(updateInput)
