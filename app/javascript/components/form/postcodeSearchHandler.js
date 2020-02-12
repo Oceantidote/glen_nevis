@@ -71,9 +71,11 @@ const retrieveAddress = (Id, Text, Type) => {
 const updateAddressInformation = ({ Items }) => {
   const { Line1, Line2, City, ProvinceName, CountryName } = Items[0]
   $('#address_1').val(Line1)
+  $('#address_1-error').html("")
   $('#address_2').val(Line2)
   $('#city').val(City)
   $('#county').val(ProvinceName)
   $('#country').val(CountryName)
+  $('#country-error').html("")
   $('.address-holder').empty()
 }
