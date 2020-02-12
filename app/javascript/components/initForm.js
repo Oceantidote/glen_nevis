@@ -11,7 +11,8 @@ import {
   extrasHandler,
   datePriceHandler,
   partyHandler,
-  errorRemover
+  errorRemover,
+  frontEndValidator
 } from './form'
 
 export const initForm = () => {
@@ -32,4 +33,5 @@ export const initForm = () => {
   datePriceHandler()
   partyHandler()
   errorRemover()
+  frontEndValidator()
 }

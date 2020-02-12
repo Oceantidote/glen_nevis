@@ -160,7 +160,7 @@
         <div class="three fields">
           <div class="eight wide field">
             <label>Marketing Source</label>
-            <select class="ui dropdown" name="[booking]marketing_source_id">
+            <select id="marketing_source_id" class="ui dropdown" name="[booking]marketing_source_id">
               <% @referrals.each do |referral| %>
                 <option value="<%= referral['id'] %>"><%= referral['name'] %></option>
               <% end %>

@@ -3,7 +3,7 @@ export const errorRemover = () => {
     ele.addEventListener("change", (e) => {
       let error = document.getElementById(e.currentTarget.dataset.error)
       if (error) {
-        error.remove()
+        error.innerHTML = ""
       }
     })
   })
@@ -11,7 +11,7 @@ export const errorRemover = () => {
     ele.addEventListener("change", (e) => {
       let error = document.getElementById("departure-error")
       if (error) {
-        error.remove()
+        error.innerHTML = ""
       }
     })
   })
