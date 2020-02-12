@@ -12,8 +12,7 @@ export const frontEndValidator = () => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById('email').value)) {
       email = true
     }
-    const gdpr = document.getElementById('gdpr').value == "true"
-    if (gdpr && blank.length == 0 && email) {
+    if (blank.length == 0 && email) {
       $('#quick_book').trigger('submit')
     } else {
       if (!email) {
@@ -23,9 +22,6 @@ export const frontEndValidator = () => {
         let error = document.getElementById(ele.dataset.error)
         error.innerHTML = "Can't be blank"
       })
-      if (!gdpr) {
-        document.getElementById('gdpr-error').innerHTML = "Must be accepted"
-      }
     }
   })
 }
