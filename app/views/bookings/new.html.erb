@@ -230,7 +230,12 @@
           </div>
         </div>
         <div class="one field">
-          <input data-error="country-error" tabindex="21" id="country" name="[booking]country" placeholder="Country" value="<%= @booking.country %>" class="req">
+          <select name="[booking]country" id="country" value="United Kingdom" data-error="country-error" tabindex="21" class="req ui dropdown">
+            <% @countries.each do |c| %>
+              <option value="<%= c %>"><%= c %></option>
+            <% end %>
+          </select>
+<!--           <input data-error="country-error" tabindex="21" id="country" name="[booking]country" placeholder="Country" class="req"> -->
           <div id="country-error" class="error"><%= @booking.errors.messages[:country][0] %></div>
         </div>
         <div class="three fields">
