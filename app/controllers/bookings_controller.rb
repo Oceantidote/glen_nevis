@@ -86,8 +86,6 @@ class BookingsController < ApplicationController
     response = RestClient.post('https://pi-test.sagepay.com/api/v1/transactions',
                                 to_upload.to_json, sp_headers)
     handleResponse(JSON.parse(response.body))
-  # rescue => e
-  #   redirect_to home_path
   end
 
   def fetch_merchant_key
@@ -221,7 +219,7 @@ class BookingsController < ApplicationController
     if (response['status']) == '3DAuth'
       redirect_to secure_booking_path @booking, pa_req: response['paReq'], acs_url: response['acsUrl']
     else
-      redirect_to home_path
+      redirect_to booking_path(@booking)
     end
   end
 

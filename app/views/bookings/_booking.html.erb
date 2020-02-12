@@ -46,22 +46,22 @@
       <div>
         <h6><strong>Postcode:</strong></h6><h6 class="taright"><%= @booking.postcode %></h6>
       </div>
-      <% if @booking.vehicle_reg %>
+      <% if !@booking.vehicle_reg.blank? %>
         <div>
           <h6><strong>Vehicle Reg:</strong></h6><h6 class="taright"><%= @booking.vehicle_reg %></h6>
         </div>
       <% end %>
-      <% if @booking.mobile_phone %>
+      <% if !@booking.mobile_phone.blank? %>
         <div>
           <h6><strong>Mobile:</strong></h6><h6 class="taright"><%= @booking.mobile_phone %></h6>
         </div>
       <% end %>
-      <% if @booking.home_phone %>
+      <% if !@booking.home_phone.blank? %>
         <div>
           <h6><strong>Home:</strong></h6><h6 class="taright"><%= @booking.home_phone %></h6>
         </div>
       <% end %>
-      <% if @booking.work_phone %>
+      <% if !@booking.work_phone.blank? %>
         <div>
           <h6><strong>Work:</strong></h6><h6 class="taright"><%= @booking.work_phone %></h6>
         </div>
