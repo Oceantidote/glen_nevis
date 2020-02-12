@@ -55,6 +55,7 @@ class BookingsController < ApplicationController
   end
 
   def iframe_redirect
+    @hide_navbar = true
   end
 
   def callback
@@ -83,9 +84,14 @@ class BookingsController < ApplicationController
   def process_payment
     @booking.set_payment_reference
     to_upload = payment_upload
-    response = RestClient.post('https://pi-test.sagepay.com/api/v1/transactions',
-                                to_upload.to_json, sp_headers)
-    handleResponse(JSON.parse(response.body))
+    begin
+      response = RestClient.post('https://pi-test.sagepay.com/api/v1/transactions',
+                                  to_upload.to_json, sp_headers)
+      handleResponse(JSON.parse(response.body))
+    rescue
+      flash[:notice] = "AMEX, Diners Club, JCB and Paypal are not supported payment types"
+      redirect_to request.referrer
+    end
   end
 
   def fetch_merchant_key

@@ -1,3 +1,11 @@
+<div class="container" style="height: 100vh;">
+  <div class="spin-hold">
+    <h4 class="center">Processing</h4>
+    <%= image_tag "sspinner.png", alt: "alttext", class: "spin" %>
+  </div>
+</div>
+
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     window.top.location.href = '<%= Rails.env.production? ? booking_url(@booking) : "http://localhost:3000#{booking_path(@booking)}" %>'
