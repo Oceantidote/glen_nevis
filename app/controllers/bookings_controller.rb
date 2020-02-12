@@ -43,7 +43,6 @@ class BookingsController < ApplicationController
     @units = unit_post([0])
     @booking_unit = @units.find{|r| r['id'] == @booking.unit_id}['name']
     @availabilities = availabilities_post
-    raise
     if @booking.transaction_id.present?
       response = RestClient.get("https://pi-test.sagepay.com/api/v1/transactions/#{@booking.transaction_id}", sp_headers)
       @payment_response = JSON.parse(response)
