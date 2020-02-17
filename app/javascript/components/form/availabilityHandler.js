@@ -74,5 +74,11 @@ const updateAvailabilities = data => {
             .removeAttr('hidden')
         }
       })
+
+    $(
+      $('#subunit-dropdown')
+        .children('option:not([disabled])')
+        .sort(() => 0.5 - Math.random())[0]
+    ).attr('selected', true)
   }
 }
