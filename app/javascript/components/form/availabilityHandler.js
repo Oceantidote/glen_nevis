@@ -76,3 +76,4 @@ const updateAvailabilities = data => {
       })
   }
 }
+

@@ -36,7 +36,7 @@
 
           <div class="field">
             <label>Departure</label>
-            <input data-error="departure-error" type="date" tabindex="3" id ="departure_date" name="[booking]departure" class="req"></input>
+            <input data-error="departure-error" type="date" tabindex="3" id ="departure_date" readonly="true" name="[booking]departure" class="req"></input>
             <div id="departure-error" class="error"><%= @booking.errors.messages[:departure][0] %></div>
           </div>
         </div>
