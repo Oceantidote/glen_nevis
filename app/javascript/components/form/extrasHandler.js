@@ -30,11 +30,8 @@ export const extrasHandler = () => {
         price_find[0]
       const rate = price ? price['rate'] * 100 : 0
       const formatted_rate = priceFormatter.format(rate / 100)
-      const checkbox = `<input class='addon-checkbox' type='checkbox' ${
-        ele['mandatory_flag'] == 1 ? 'checked' : ''
-      }></input>`
       const sel_length = types[ele['name']].length > 0
-      const select = `<select class="addon-select">${types[ele['name']].map(
+      const select = `<select tabindex='9' class="addon-select">${types[ele['name']].map(
         x => `<option value=${x}>${x}</option>`
       )}</select>`
       let addon_form = `<div class='addon' data-id='${
@@ -51,10 +48,6 @@ export const extrasHandler = () => {
     updateInput()
     updatePrices()
     $('.addon-select').on('change', function(e) {
-      updatePrices()
-      updateInput()
-    })
-    $('.addon-checkbox').on('change', function(e) {
       updatePrices()
       updateInput()
     })
