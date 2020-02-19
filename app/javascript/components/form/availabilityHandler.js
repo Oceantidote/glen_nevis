@@ -6,8 +6,7 @@ export const availabilityHandler = () => {
     input: () => {
       if (!$('#unit-dropdown').val()) return
 
-      $('#subunit-dropdown').val('')
-      setTimeout(checkAvailability, 100)
+      checkAvailability()
     }
   })
 }
@@ -18,8 +17,12 @@ export const checkAvailability = async () => {
   const arrival = moment($('#arrival_date').val(), 'DD/MM/YYYY').format(
     'YYYY-MM-DD'
   )
-  const departure = $('#departure_date').val()
-  if (!departure) return
+
+  const nights = $('#nights').val()
+  const departure = moment(arrival)
+    .add(nights - 1, 'd')
+    .format('YYYY-MM-DD')
+
   const response = await fetch('https://api.anytimebooking.eu/availability', {
     method: 'POST',
     headers: anytimeHeaders,
@@ -48,6 +51,7 @@ const populateIds = ids => {
 }
 
 const updateAvailabilities = data => {
+  // console.log(data.length)
   $('.unit-availability-holder').empty()
   if ($('#subunit-dropdown').attr('disabled')) {
     if (data.length === 0 || data.find(avail => avail.level === 0)) {
@@ -78,6 +82,8 @@ const updateAvailabilities = data => {
     const option = $('#subunit-dropdown')
       .children('option[value]:not([disabled])')
       .sort(() => 0.5 - Math.random())[0]
+
+    if (!option) return
 
     // console.log(option)
     // console.log(option.value)
