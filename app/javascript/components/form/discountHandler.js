@@ -13,13 +13,16 @@ export const discountHandler = () => {
     const discount_matches = discounts.filter( x => x.units.includes(parseInt(unit)) && x.dates.some( y => y.date_from <= arrival && y.date_to >= departure))
     const type_four = discount_matches.filter( x => x.details.type == 4 )
     const correct = type_four.filter( x => x.details.duration_from == parseInt(nights))
+    console.log(correct)
     const base = $('#base_cents').val()
+    const party = $('#party_cents').val()
     const discount_hidden = $('#discount_cents')
     const discount_show = $('#discount')
     if (correct.length > 0) {
-      const discount = parseInt(base) * correct[0].details.percentage / 100
-      discount_hidden.val(discount)
-      discount_show.html(priceFormatter.format(discount / 100))
+      const discount = (parseInt(base) * correct[0].details.percentage / 100) + (parseInt(party) * correct[0].details.percentage / 100)
+      const ceil_discount = Math.ceil(discount / 50) * 50;
+      discount_hidden.val(ceil_discount)
+      discount_show.html(priceFormatter.format(ceil_discount / 100))
     } else {
       discount_hidden.val(0)
       discount_show.html('£0.00')
