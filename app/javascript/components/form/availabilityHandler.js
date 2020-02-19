@@ -75,10 +75,13 @@ const updateAvailabilities = data => {
         }
       })
 
-    const value = $('#subunit-dropdown')
+    const option = $('#subunit-dropdown')
       .children('option[value]:not([disabled])')
-      .sort(() => 0.5 - Math.random())[0].value
+      .sort(() => 0.5 - Math.random())[0]
 
-    $('#subunit-dropdown').val(value)
+    // console.log(option)
+    // console.log(option.value)
+
+    $('#subunit-dropdown').val(option.value)
   }
 }

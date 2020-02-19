@@ -4,19 +4,20 @@ export const updatePrices = () => {
   let sum = 0
   document.querySelectorAll('.addon').forEach(ele => {
     if (
-      ele.childNodes[1].childNodes[0].checked &&
-      (ele.childNodes[0].childNodes[0].innerHTML == "Booking Fee" || ele.childNodes[0].childNodes[0].innerHTML == "Cleaning Charge")
+      ele.querySelector('.addon-name').innerHTML == 'Booking Fee' ||
+      ele.querySelector('.addon-name').innerHTML == 'Cleaning Charge'
     ) {
       sum +=
-        parseInt(ele.childNodes[1].childNodes[1].value) *
+        parseInt(ele.querySelector('.addon-select').value) *
         parseInt(ele.dataset.rate)
     } else if (
-      ele.childNodes[1].childNodes[0].checked &&
-      ele.childNodes[0].childNodes[0].innerHTML != 'Type of unit'
+      ele.querySelector('.addon-name').innerHTML != 'Type of unit' &&
+      ele.querySelector('.addon-name').innerHTML != 'Tent Size'
     ) {
       sum +=
-        parseInt(ele.childNodes[1].childNodes[1].value) *
-        parseInt(ele.dataset.rate) * $('#nights').val()
+        parseInt(ele.querySelector('.addon-select').value) *
+        parseInt(ele.dataset.rate) *
+        $('#nights').val()
     }
   })
   $('#addon').val(sum)
