@@ -15,8 +15,8 @@ const updateTotal = () => {
     let a = parseInt($('#base').val())
     let b = parseInt($('#party').val())
     let c = parseInt($('#addon').val())
-    let d = -parseInt($('#discount').val())
-    const sum = a + b + c + d
+    let d = parseInt($('#discount_cents').val())
+    const sum = a + b + c - d
     $('#total').val(sum)
     document.getElementById('total').innerHTML = priceFormatter.format(
       sum / 100
