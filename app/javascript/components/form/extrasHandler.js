@@ -31,7 +31,7 @@ export const extrasHandler = () => {
       const rate = price ? price['rate'] * 100 : 0
       const formatted_rate = priceFormatter.format(rate / 100)
       const sel_length = types[ele['name']].length > 0
-      const select = `<select tabindex='9' class="addon-select">${types[ele['name']].map(
+      const select = `<select class="addon-select">${types[ele['name']].map(
         x => `<option value=${x}>${x}</option>`
       )}</select>`
       let addon_form = `<div class='addon' data-id='${

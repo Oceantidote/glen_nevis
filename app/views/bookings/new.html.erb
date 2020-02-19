@@ -31,7 +31,7 @@
           </div>
           <div class="field">
             <label>Nights</label>
-            <input id="nights" '' type="number" min="1" max="40" name="[booking]nights" value="1" class="availability-update party-price dep">
+            <input id="nights" type="number" min="1" max="40" name="[booking]nights" value="1" class="availability-update party-price dep">
           </div>
 
           <div class="field">
@@ -42,7 +42,7 @@
         </div>
         <div class="one field">
           <label>Unit</label>
-          <select data-error="unit_id-error" class="ui dropdown party-price req" id="unit-dropdown" name="[booking]unit_id" ''>
+          <select data-error="unit_id-error" class="ui dropdown party-price req" id="unit-dropdown" name="[booking]unit_id">
             <option value="" disabled selected></option>
             <% @categories.each do |category| %>
               <% category['units'].each do |unit| %>
@@ -56,7 +56,7 @@
         <div class="one unit-availability-holder"></div>
         <div class="one field">
           <label>Available Pitches</label>
-          <select class="ui dropdown" disabled '' id="subunit-dropdown" name="[booking]subunit_id">
+          <select class="ui dropdown" disabled id="subunit-dropdown" name="[booking]subunit_id">
           </select>
           <input id="pitch_name" name="[booking]pitch_name" type="hidden">
         </div>
@@ -64,15 +64,15 @@
         <div class="three fields">
           <div class="field">
             <label>Adults</label>
-            <input class="party-price" id="adults" '' type="number" min="0" max="40" name="[booking]adults" value=2>
+            <input class="party-price" id="adults" type="number" min="0" max="40" name="[booking]adults" value=2>
           </div>
           <div class="field">
             <label>Children</label>
-            <input class="party-price" id="children" '' type="number" min="0" max="40" name="[booking]children" value=0>
+            <input class="party-price" id="children" type="number" min="0" max="40" name="[booking]children" value=0>
           </div>
           <div class="field">
             <label>Infants</label>
-            <input class="party-price" id="infants" '' type="number" min="0" max="40" name="[booking]infants" value=0>
+            <input class="party-price" id="infants" type="number" min="0" max="40" name="[booking]infants" value=0>
           </div>
         </div>
         <h4 id="extras" data-date="<%= @mid_year %>" data-extras="<%= @extras %>" data-prices="<%= @prices %>">Add Ons</h4>
@@ -150,7 +150,7 @@
             <button id="clear_form" value="cancel" class="fluid ui negative button" name="cancel" type="submit">Clear Form</button>
           </div>
           <div class="field">
-            <button id="add_booking" '' value="add_booking" class="fluid ui positive button" name="add_booking" type="submit" data-confirm="Are you sure you wish to proceed to payment? You will not be able to change these details again after progressing to the payment stage.">Quick Add to Anytime</button>
+            <button id="add_booking" value="add_booking" class="fluid ui positive button" name="add_booking" type="submit" data-confirm="Are you sure you wish to proceed to payment? You will not be able to change these details again after progressing to the payment stage.">Quick Add to Anytime</button>
           </div>
         </div>
       </div>
@@ -200,12 +200,12 @@
         <div class="two fields">
           <div class="four wide field">
             <label>Postcode</label>
-            <input data-error="postcode-error" '' type="text" name="[booking]postcode" value="<%= @booking.postcode %>" id="postcode" class="req">
+            <input data-error="postcode-error" type="text" name="[booking]postcode" value="<%= @booking.postcode %>" id="postcode" class="req">
             <div id="postcode-error" class="error"><%= @booking.errors.messages[:postcode][0] %></div>
           </div>
           <div class="twelve wide field">
             <label>Action</label>
-            <button id="find_address" '' value="find_address" class="disabled fluid ui button" name="find_address" type="submit">Look Up Address</button>
+            <button id="find_address" value="find_address" class="disabled fluid ui button" name="find_address" type="submit">Look Up Address</button>
           </div>
         </div>
         <div class="four wide column">
@@ -214,23 +214,23 @@
         </div>
         <div class="two fields">
           <div class="field">
-            <input data-error="address_1-error" '' type="text" name="[booking]address1" value="<%= @booking.address1 %>" class="req" placeholder="Address 1" id="address_1">
+            <input data-error="address_1-error" type="text" name="[booking]address1" value="<%= @booking.address1 %>" class="req" placeholder="Address 1" id="address_1">
             <div id="address_1-error" class="error"><%= @booking.errors.messages[:address1][0] %></div>
           </div>
           <div class="field">
-            <input '' type="text" name="[booking]address2" value="<%= @booking.address2 %>" placeholder="Address 2" id="address_2">
+            <input type="text" name="[booking]address2" value="<%= @booking.address2 %>" placeholder="Address 2" id="address_2">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
-            <input '' type="text" name="[booking]city" value="<%= @booking.city %>" placeholder="Town/City" id="city">
+            <input type="text" name="[booking]city" value="<%= @booking.city %>" placeholder="Town/City" id="city">
           </div>
           <div class="field">
-            <input '' type="text" name="[booking]county" value="<%= @booking.county %>" placeholder="County" id="county">
+            <input type="text" name="[booking]county" value="<%= @booking.county %>" placeholder="County" id="county">
           </div>
         </div>
         <div class="one field">
-          <select name="[booking]country" id="country" value="United Kingdom" data-error="country-error" '' class="req ui dropdown">
+          <select name="[booking]country" id="country" value="United Kingdom" data-error="country-error" class="req ui dropdown">
             <% @countries.each do |c| %>
               <option value="<%= c %>"><%= c %></option>
             <% end %>
@@ -241,20 +241,20 @@
         <div class="three fields">
           <div class="field">
             <label>Mobile Phone</label>
-            <input '' type="text" name="[booking]mobile_phone" value="<%= @booking.mobile_phone %>">
+            <input type="text" name="[booking]mobile_phone" value="<%= @booking.mobile_phone %>">
           </div>
           <div class="field">
             <label>Home Phone</label>
-            <input '' type="text" name="[booking]home_phone" value="<%= @booking.home_phone %>">
+            <input type="text" name="[booking]home_phone" value="<%= @booking.home_phone %>">
           </div>
           <div class="field">
             <label>Work Phone</label>
-            <input '' type="text" name="[booking]work_phone" value="<%= @booking.work_phone %>">
+            <input type="text" name="[booking]work_phone" value="<%= @booking.work_phone %>">
           </div>
         </div>
         <div class="one field">
           <label>GDPR Permission</label>
-          <select data-error="gdpr-error" '' id="gdpr" class="ui dropdown req" name="[booking]gdpr">
+          <select data-error="gdpr-error" id="gdpr" class="ui dropdown req" name="[booking]gdpr">
             <option value="false">No</option>
             <option id="gdpr-true" value="true">Yes</option>
           </select>
@@ -262,15 +262,15 @@
         </div>
         <div class="one field">
           <label>Customer Note</label>
-          <textarea rows="3" '' value="<%= @booking.customer_note %>" name="[booking]customer_note"></textarea>
+          <textarea rows="3" value="<%= @booking.customer_note %>" name="[booking]customer_note"></textarea>
         </div>
         <div class="one field">
           <label>Admin Note</label>
-          <textarea rows="3" '' name="[booking]admin_note" value="<%= @booking.admin_note %>"></textarea>
+          <textarea rows="3" name="[booking]admin_note" value="<%= @booking.admin_note %>"></textarea>
         </div>
         <div class="one field">
           <label>Housekeeping Note</label>
-          <textarea rows="3" '' value="<%= @booking.housekeeping_note %>" name="[booking]housekeeping_note"></textarea>
+          <textarea rows="3" value="<%= @booking.housekeeping_note %>" name="[booking]housekeeping_note"></textarea>
         </div>
       </div>
     </div>
