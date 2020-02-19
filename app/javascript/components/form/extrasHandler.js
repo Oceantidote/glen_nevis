@@ -8,16 +8,16 @@ export const extrasHandler = () => {
   const types = {
     'Type of unit': ['Caravan', 'Motorhome', 'Campervan', 'Trailer Tent'],
     'Extra Car': [0, 1, 2, 3, 4, 5],
-    Dog: [1, 2, 3, 4, 5],
+    Dog: [0, 1, 2, 3, 4, 5],
     'Cleaning Charge': [1],
-    Gazebo: [1, 2, 3, 4, 5],
+    Gazebo: [0, 1, 2, 3, 4, 5],
     'Booking Fee': [1],
-    'Tent Size': [1, 2, 3, 4, 5, 6, 7, 8],
-    Motorbike: [1, 2, 3, 4, 5],
+    'Tent Size': ['Small', 'Medium', 'Large'],
+    Motorbike: [0, 1, 2, 3, 4, 5],
     'Number of Tents': [1, 2, 3, 4, 5, 6, 7, 8],
-    MOTORBIKE: [1, 2, 3, 4, 5],
-    'Additional Tent': [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    'Additional Car': [1, 2, 3, 4, 5]
+    MOTORBIKE: [0, 1, 2, 3, 4, 5],
+    'Additional Tent': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    'Additional Car': [0, 1, 2, 3, 4, 5]
   }
   $('#unit-dropdown').change(e => {
     $('#addons').html('')
@@ -43,11 +43,12 @@ export const extrasHandler = () => {
         ele['name']
       }</div><div class='addon-desc'>${
         ele['description']
-      }</div></div><div class='addon-rhs'>${checkbox}${
-        sel_length ? select : ''
-      }${formatted_rate == '£0.00' ? '' : formatted_rate}</div></div>`
+      }</div></div><div class='addon-rhs'>${sel_length ? select : ''}${
+        formatted_rate == '£0.00' ? '' : formatted_rate
+      }</div></div>`
       $('#addons').append(addon_form)
     })
+    updateInput()
     updatePrices()
     $('.addon-select').on('change', function(e) {
       updatePrices()
@@ -59,4 +60,3 @@ export const extrasHandler = () => {
     })
   })
 }
-
