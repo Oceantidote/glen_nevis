@@ -1,5 +1,6 @@
 import { anytimeHeaders } from './anytimeHeaders'
 import { checkAvailability } from './availabilityHandler'
+import { discountHandler } from './discountHandler'
 
 export const unitSelectHandler = () => {
   $('#unit-dropdown').change(async e => {
@@ -17,6 +18,7 @@ export const unitSelectHandler = () => {
     const data = await response.json()
 
     $('#subunit-dropdown').empty()
+    discountHandler()
     if (data.length > 0) {
       data.forEach(subunit => {
         $('#subunit-dropdown').removeAttr('disabled')
