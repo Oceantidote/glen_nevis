@@ -83,6 +83,9 @@ const updateAvailabilities = data => {
       .children('option[value]:not([disabled])')
       .sort(() => 0.5 - Math.random())[0]
 
+    console.log(
+      $('#subunit-dropdown').children('option[value]:not([disabled])')
+    )
     if (!option) return
 
     // console.log(option)
@@ -91,4 +94,3 @@ const updateAvailabilities = data => {
     $('#subunit-dropdown').val(option.value)
   }
 }
-

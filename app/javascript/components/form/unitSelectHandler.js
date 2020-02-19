@@ -17,6 +17,9 @@ export const unitSelectHandler = () => {
     const data = await response.json()
 
     $('#subunit-dropdown').empty()
+    $('#subunit-dropdown').append(
+      '<option disabled value="" selected></option>'
+    )
     if (data.length > 0) {
       data.forEach(subunit => {
         $('#subunit-dropdown').removeAttr('disabled')
