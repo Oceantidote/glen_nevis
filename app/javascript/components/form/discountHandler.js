@@ -13,7 +13,6 @@ export const discountHandler = () => {
     const discount_matches = discounts.filter( x => x.units.includes(parseInt(unit)) && x.dates.some( y => y.date_from <= arrival && y.date_to >= departure))
     const type_four = discount_matches.filter( x => x.details.type == 4 )
     const correct = type_four.filter( x => x.details.duration_from == parseInt(nights))
-    console.log(correct)
     const base = $('#base_cents').val()
     const party = $('#party_cents').val()
     const discount_hidden = $('#discount_cents')
