@@ -42,8 +42,10 @@ class Booking < ApplicationRecord
         discount_cost: discount_cents/100.to_f,
         total_cost: price_cents/100.to_f,
       }, payment: {
-        amount: payment_type == 'deposit' ? 5000 : price_cents/100.to_f,
-        type: 1
+        amount: payment_type.match?('deposit') ? 5.00 : price_cents/100.to_f,
+        type: 1,
+        payment_method_id: payment_type.match?('card') ? 1 : 3,
+        note: payment_type
       }, extras: JSON.parse(extras)
     }
   end
