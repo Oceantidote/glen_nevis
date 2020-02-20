@@ -21,8 +21,8 @@ class Booking < ApplicationRecord
     hash= {
       base: {
         custom_ref: self.id,
-        site_id: 1,
-        agent: 15,
+        site_id: 0,
+        agent: 0,
         provisional_flag: false,
         category_id: category_id,
         unit_id: subunit_id || unit_id,
