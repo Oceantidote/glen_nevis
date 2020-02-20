@@ -6,7 +6,7 @@ class Booking < ApplicationRecord
   end
 
   def set_payment_reference
-    self.update(payment_reference: "anytimequickbook-#{id}-#{Time.now.strftime('%Y%m%d%H%M')}")
+    self.update(payment_reference: "AQB-#{id}-#{Time.now.strftime('%Y%m%d%H%M')}")
   end
 
   def amount_to_pay
