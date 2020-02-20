@@ -20,7 +20,7 @@ class Booking < ApplicationRecord
   def to_submit
     hash= {
       base: {
-        custom_ref: self.id,
+        custom_ref: "AQB#{id}",
         site_id: 0,
         agent: 0,
         provisional_flag: false,
