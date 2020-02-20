@@ -17,6 +17,7 @@ export const extrasHandler = () => {
     'Number of Tents': [1, 2, 3, 4, 5, 6, 7, 8],
     MOTORBIKE: [0, 1, 2, 3, 4, 5],
     'Additional Tent': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    'Pup Tent': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     'Additional Car': [0, 1, 2, 3, 4, 5]
   }
   $('#unit-dropdown').change(e => {
