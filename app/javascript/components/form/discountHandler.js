@@ -17,9 +17,11 @@ export const discountHandler = () => {
     const party = $('#party_cents').val()
     const discount_hidden = $('#discount_cents')
     const discount_show = $('#discount')
+    console.log(correct)
     if (correct.length > 0) {
       const free_days = correct[0].details.duration_from - correct[0].details.duration_to
       const discount_percentage = free_days / correct[0].details.duration_from
+      console.log(discount_percentage)
       const discount = (parseInt(base) * discount_percentage) + (parseInt(party) * discount_percentage)
       const ceil_discount = Math.floor(discount / 50) * 50;
       discount_hidden.val(ceil_discount)
