@@ -26,6 +26,7 @@ class BookingsController < ApplicationController
     if @booking.save
       data = booking_put
       @booking.update(anytime_booking_id: data['booking_id'], anytime_booking_reference: data['booking_ref'])
+      payment_put
       if !@booking.payment_type.match?(/paid/)
         redirect_to payment_booking_path(@booking)
       else
@@ -157,6 +158,13 @@ class BookingsController < ApplicationController
       parent_id: parent_ids
   }.to_json, anytime_headers)
     JSON.parse(response.body)
+  end
+
+  def payment_put
+      response = RestClient.put('https://api.anytimebooking.eu/payment', @booking.to_pay.to_json, anytime_headers)
+      JSON.parse(response.body)
+    rescue => e
+      raise
   end
 
   def category_get

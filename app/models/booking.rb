@@ -41,12 +41,20 @@ class Booking < ApplicationRecord
         addon_cost: add_on_cents/100.to_f,
         discount_cost: discount_cents/100.to_f,
         total_cost: price_cents/100.to_f,
-      }, payment: {
+      },
+      extras: JSON.parse(extras)
+    }
+  end
+
+  def to_pay
+    hash= {
+      payment: {
+        booking_id: anytime_booking_id,
         amount: payment_type.match?('deposit') ? 5.00 : price_cents/100.to_f,
-        type: 1,
+        type: payment_type.match?('deposit') ? 1 : 2,
         payment_method_id: payment_type.match?('card') ? 1 : 3,
         note: payment_type
-      }, extras: JSON.parse(extras)
+      }
     }
   end
 
