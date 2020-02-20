@@ -23,6 +23,7 @@ export const extrasHandler = () => {
     $('#addons').html('')
     addons = extras.filter(x => x['unit_id'] == e.currentTarget.value)
     addons.forEach(ele => {
+      console.log(ele['name'])
       const arrival = $('#arrival_date').val() || $('#extras').data('date')
       const price_find = prices.find(x => x['id'] == ele['id'])['rates']
       const price =
