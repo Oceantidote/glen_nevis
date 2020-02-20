@@ -162,7 +162,6 @@ class BookingsController < ApplicationController
 
   def payment_put
       response = RestClient.put('https://api.anytimebooking.eu/payment', @booking.to_pay.to_json, anytime_headers)
-      JSON.parse(response.body)
     rescue => e
       raise
   end
