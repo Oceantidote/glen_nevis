@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def anytime_headers
     {
       Authorization: "Bearer #{ENV['ANYTIME_API_KEY']}",
-      Accept: 'application/json;version=1.1;sandbox',
+      Accept: "application/json;version=1.1#{ ';sandbox' if Rails.env.development? }",
       'Content-Type': 'application/json'
     }
   end
