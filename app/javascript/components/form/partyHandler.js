@@ -1,4 +1,5 @@
 import { priceFormatter } from './priceFormatter'
+import { discountHandler } from './discountHandler'
 
 export const partyHandler = () => {
   $('.party-price').on({
@@ -38,6 +39,7 @@ export const partyHandler = () => {
       $('#party').val(total)
       $('#party_cents').val(total)
       $('#party').text(formattedTotal)
+      discountHandler()
     }
   })
 }
