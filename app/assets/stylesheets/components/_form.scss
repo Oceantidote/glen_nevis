@@ -15,6 +15,10 @@
 }
 
 .info-container {
+  width: 50%;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
   display: flex;
   justify-content: center;
   margin: 10px;
@@ -32,13 +36,10 @@
 }
 
 .info {
-  width: 50%;
+  width: 100%;
   border: solid #ddd 1px;
   padding: 20px 20px;
   border-radius: 3px;
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-  }
   div {
     display: flex;
     justify-content: space-between;
