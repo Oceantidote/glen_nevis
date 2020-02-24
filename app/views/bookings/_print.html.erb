@@ -28,7 +28,7 @@
       <br />
       <span>Adult: <%= @booking.adults %></span> <span>Child: <%= @booking.children %></span> <span>Infant: <%= @booking.infants %></span>
       <br />
-      ID: <%= @booking.anytime_booking_id %> - <%= "£#{@booking.price_cents / 100.to_f}0" %>
+      ID: <%= @booking.anytime_booking_reference %> - <%= "£#{@booking.price_cents / 100.to_f}0" %>
     </strong><br>
     <strong style="font-size:16px; font-family: Arial, sans-serif"><%= @booking.pitch_name %></strong>
   </div>
