@@ -58,7 +58,7 @@ const dealWithData = data => {
   while (itr.hasNext()) {
     range.push(itr.next().toDate())
   }
-  range.shift()
+  range.pop()
   let prices = []
   range.forEach(date => {
     let price = data.filter(
