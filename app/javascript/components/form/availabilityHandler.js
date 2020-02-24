@@ -87,7 +87,6 @@ const updateAvailabilities = data => {
 
     // console.log(option)
     // console.log(option.value)
-    console.log(option)
     $('#subunit-dropdown').val(option.value)
     $('#pitch_name').val(option.innerHTML)
   }
