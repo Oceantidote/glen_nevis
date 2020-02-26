@@ -57,7 +57,10 @@
   align-items: flex-end;
   width: 20%;
 }
-
+#printableArea {
+  display: flex;
+  justify-content: center;
+}
 .error {
   color: red;
 }
@@ -70,7 +73,11 @@
     flex-direction: column;
   }
 }
-
+.name-reg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 select {
   padding: 0 10px !important;
 }
