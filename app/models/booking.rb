@@ -32,7 +32,7 @@ class Booking < ApplicationRecord
         departure: departure.strftime('%Y-%m-%d'),
         referral_id: marketing_source_id,
         party_size: adults + children + infants,
-        note: admin_note
+        note: admin_note.blank? ? nil : admin_note
       },
       customer: add_customer,
       cost: {
