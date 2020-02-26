@@ -62,7 +62,7 @@ const dealWithData = data => {
   let prices = []
   range.forEach(date => {
     let price = data.filter(
-      x => new Date(new Date(x['day']) - 3600000) <= new Date(date) && new Date(x['day2']) >= new Date(date)
+      x => new Date(new Date(x['day']) - 3600000) <= new Date(date) && new Date(new Date(x['day2']) + 3600000) >= new Date(date)
     )
     try {
       prices.push(price[0]['rate'])
