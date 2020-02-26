@@ -26,10 +26,10 @@ class BookingsController < ApplicationController
     if @booking.save
       data = booking_put
       @booking.update(anytime_booking_id: data['booking_id'], anytime_booking_reference: data['booking_ref'])
-      payment_put
       if !@booking.payment_type.match?(/paid/)
         redirect_to payment_booking_path(@booking)
       else
+        payment_put
         redirect_to booking_path(@booking)
       end
     else
@@ -70,8 +70,10 @@ class BookingsController < ApplicationController
     }.to_json, sp_headers)
     # status = JSON.parse(response.body)['status']
     if Rails.env.production?
+      payment_put
       redirect_to iframe_redirect_booking_url @booking
     else
+      payment_put
       redirect_to iframe_redirect_booking_path @booking
     end
   end
@@ -243,6 +245,7 @@ class BookingsController < ApplicationController
     if (response['status']) == '3DAuth'
       redirect_to secure_booking_path @booking, pa_req: response['paReq'], acs_url: response['acsUrl']
     else
+      payment_put
       redirect_to booking_path(@booking)
     end
   end

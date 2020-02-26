@@ -22,6 +22,7 @@ class Booking < ApplicationRecord
       base: {
         custom_ref: "AQB#{id}",
         site_id: 0,
+        telephone_flag: 1,
         agent: 0,
         provisional_flag: false,
         category_id: category_id,
@@ -49,6 +50,7 @@ class Booking < ApplicationRecord
   def to_pay
     hash= {
       payment: {
+        send_email: 1,
         booking_id: anytime_booking_id,
         amount: payment_type.match?('deposit') ? 5.00 : price_cents/100.to_f,
         type: payment_type.match?('deposit') ? 1 : 2,
