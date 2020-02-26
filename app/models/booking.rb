@@ -31,7 +31,8 @@ class Booking < ApplicationRecord
         balance_due: arrival.strftime('%Y-%m-%d'),
         departure: departure.strftime('%Y-%m-%d'),
         referral_id: marketing_source_id,
-        party_size: adults + children + infants
+        party_size: adults + children + infants,
+        note: ''
       },
       customer: add_customer,
       cost: {
