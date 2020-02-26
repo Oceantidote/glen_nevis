@@ -1,4 +1,4 @@
-<div id="printableArea">
+<div id="printableArea" style="width: 220px;">
   <div style="text-align: center;">
     <span style="font-family: Arial, sans-serif">
       <span>Departing</span> <span id="departureDay"><%= @booking.departure.strftime('%A') %></span><br />
@@ -33,7 +33,7 @@
     <strong style="font-size:16px; font-family: Arial, sans-serif"><%= @booking.pitch_name %></strong>
   </div>
 </div>
-<div class="controls-holder" style="display: flex; justify-content: center; margin-top: 20px">
+<div class="controls-holder" style="display: flex; justify-content: flex-start; margin-top: 20px">
   <div class="controls">
     <input type="number" name="" id="print_quantity" value="1">
     <button id="print-btn">Print</button>
