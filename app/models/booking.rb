@@ -18,7 +18,7 @@ class Booking < ApplicationRecord
   end
 
   def to_submit
-    hash= {
+    booking_hash = {
       base: {
         custom_ref: "AQB#{id}",
         site_id: 0,
@@ -31,8 +31,7 @@ class Booking < ApplicationRecord
         balance_due: arrival.strftime('%Y-%m-%d'),
         departure: departure.strftime('%Y-%m-%d'),
         referral_id: marketing_source_id,
-        party_size: adults + children + infants,
-        note: admin_note.blank? ? '' : admin_note
+        party_size: adults + children + infants
       },
       customer: add_customer,
       cost: {
@@ -45,6 +44,10 @@ class Booking < ApplicationRecord
       },
       extras: JSON.parse(extras)
     }
+    unless admin_note.blank?
+      booking_hash[:base][:note] = admin_note
+    end
+    booking_hash
   end
 
   def to_pay
