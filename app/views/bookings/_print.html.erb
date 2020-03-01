@@ -1,15 +1,13 @@
 <div id="printableArea">
-  <div style="text-align: center; width: 220px;">
-    <span style="font-family: Arial, sans-serif">
-      <span>Departing</span> <span id="departureDay"><%= @booking.departure.strftime('%A') %></span><br />
-      <strong id="departureDate" style="font-size:50px;"><%= @booking.departure.strftime('%d %b') %></strong><br />
-      Arrived: <span id="arrivalDate"></span> <%= @booking.arrival.strftime('%a %d %b %Y') %>
-    </span>
-    <div class="name-reg">
-      <span style="font-family: Arial, sans-serif"><%= @booking.last_name.capitalize %></span>
-      <span style="font-family: Arial, sans-serif"><%= @booking.vehicle_reg %></span>
-    </div>
-    <strong style="font-size:16px; font-family: Arial, sans-serif">
+  <div style="text-align: center; width: 350px; line-height: 1.15; font-size: 20px">
+    <span>Departing</span> <span id="departureDay" ><%= @booking.departure.strftime('%A') %></span>
+    <br />
+    <strong id="departureDate" style="font-size:80px;"><%= @booking.departure.strftime('%d %b') %></strong>
+    <br />
+    Arrived: <span id="arrivalDate"></span> <%= @booking.arrival.strftime('%a %d %b %Y') %>
+    <br />
+    <span style="font-family: Arial, sans-serif"><%= @booking.last_name.capitalize %> - <%= @booking.vehicle_reg %></span>
+    <strong style="font-size:25px; font-family: Arial, sans-serif">
       <%= @booking_unit %>
       <br />
       <span>Adult: <%= @booking.adults %></span> <span>Child: <%= @booking.children %></span> <span>Infant: <%= @booking.infants %></span>
