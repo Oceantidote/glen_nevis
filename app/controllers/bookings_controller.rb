@@ -49,7 +49,7 @@ class BookingsController < ApplicationController
     @units = unit_post([0])
     @booking_unit = @units.find{|r| r['id'] == @booking.unit_id}['name']
     if @booking.transaction_id.present?
-      response = RestClient.get("https://pi-test.sagepay.com/api/v1/transactions/#{@booking.transaction_id}", sp_headers)
+      response = RestClient.get("https://pi-live.sagepay.com/api/v1/transactions/#{@booking.transaction_id}", sp_headers)
       @payment_response = JSON.parse(response)
     end
   end
@@ -65,7 +65,7 @@ class BookingsController < ApplicationController
   end
 
   def callback
-    RestClient.post("https://pi-test.sagepay.com/api/v1/transactions/#{@booking.transaction_id}/3d-secure", {
+    RestClient.post("https://pi-live.sagepay.com/api/v1/transactions/#{@booking.transaction_id}/3d-secure", {
       paRes: params[:PaRes]
     }.to_json, sp_headers)
     # status = JSON.parse(response.body)['status']
@@ -93,7 +93,7 @@ class BookingsController < ApplicationController
     @booking.set_payment_reference
     to_upload = payment_upload
     begin
-      response = RestClient.post('https://pi-test.sagepay.com/api/v1/transactions',
+      response = RestClient.post('https://pi-live.sagepay.com/api/v1/transactions',
                                   to_upload.to_json, sp_headers)
       handleResponse(JSON.parse(response.body))
     rescue
@@ -103,7 +103,7 @@ class BookingsController < ApplicationController
   end
 
   def fetch_merchant_key
-    response = RestClient.post("https://pi-test.sagepay.com/api/v1/merchant-session-keys", {
+    response = RestClient.post("https://pi-live.sagepay.com/api/v1/merchant-session-keys", {
                             vendorName: "#{ENV['SP_VENDOR']}"
                           }.to_json, sp_headers)
     render json: JSON.parse(response.body)
