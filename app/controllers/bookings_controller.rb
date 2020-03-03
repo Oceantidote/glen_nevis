@@ -169,12 +169,12 @@ class BookingsController < ApplicationController
   end
 
   def category_get
+    puts anytime_headers
     response = RestClient.get('https://api.anytimebooking.eu/category', anytime_headers)
     JSON.parse(response.body)
   end
 
   def extras_get
-    puts anytime_headers
     response = RestClient.get('https://api.anytimebooking.eu/extras', anytime_headers)
     JSON.parse(response.body)
   end
