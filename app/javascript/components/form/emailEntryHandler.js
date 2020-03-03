@@ -4,6 +4,7 @@ import { handlePostcodeFindResponse } from './postcodeSearchHandler'
 export const emailEntryHandler = () => {
   $('#email').keyup(async e => {
     if (e.currentTarget.value.match(/([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/igm)) {
+      console.log(anytimeHeaders)
       const response = await fetch('https://api.anytimebooking.eu/user', {
         method: 'POST',
         headers: anytimeHeaders,
