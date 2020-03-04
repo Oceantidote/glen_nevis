@@ -11,7 +11,7 @@ export const extrasHandler = () => {
     Dog: [0, 1, 2, 3, 4, 5],
     'Cleaning Charge': [1],
     Gazebo: [0, 1, 2, 3, 4, 5],
-    'Booking Fee': [1],
+    'Booking Fee': [1, 0],
     'Tent Size': ['Small', 'Medium', 'Large'],
     Motorbike: [0, 1, 2, 3, 4, 5],
     'Number of Tents': [1, 2, 3, 4, 5, 6, 7, 8],
