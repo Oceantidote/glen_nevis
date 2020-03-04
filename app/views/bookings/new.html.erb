@@ -148,14 +148,15 @@
         </div>
         <div class="two fields">
           <div class="field">
-            <button id="clear_form" value="cancel" class="fluid ui negative button" name="cancel" type="submit">Clear Form</button>
+            <%= link_to new_booking_path do  %>
+              <div class="fluid ui negative button">Clear Form</div>
+            <% end %>
           </div>
           <div class="field">
             <button id="add_booking" value="add_booking" class="fluid ui positive button" name="add_booking" type="submit" data-confirm="Are you sure you wish to proceed to payment? You will not be able to change these details again after progressing to the payment stage.">Quick Add to Anytime</button>
           </div>
         </div>
       </div>
-
 
       <div class="eight wide column">
         <div class="three fields">
