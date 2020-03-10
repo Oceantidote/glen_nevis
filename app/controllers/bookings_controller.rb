@@ -26,6 +26,7 @@ class BookingsController < ApplicationController
     if @booking.save
       data = booking_put
       @booking.update(anytime_booking_id: data['booking_id'], anytime_booking_reference: data['booking_ref'])
+      upload_notes
       if !@booking.payment_type.match?(/paid/)
         redirect_to payment_booking_path(@booking)
       else
@@ -202,6 +203,26 @@ class BookingsController < ApplicationController
     JSON.parse(response.body)
   rescue => e
     raise
+  end
+
+  def upload_notes
+    note_types = {"admin_note" => 1, "customer_note" => 2, "housekeeping_note" => 3}
+    note_types.keys.each do |note_type|
+      if @booking.public_send(note_type).present?
+        to_upload = {
+          "booking_id" => @booking.anytime_booking_id,
+          "type" => note_types[note_type],
+          "user_id" => @booking.customer_id || 0,
+          "staff_id" => 0,
+          "note" => @booking.public_send(note_type)
+        }
+        begin
+          response = RestClient.put('https://api.anytimebooking.eu/note', to_upload.to_json, anytime_headers)
+        rescue => e
+          raise
+        end
+      end
+    end
   end
 
   def attach_units_to_categories(categories, units)
