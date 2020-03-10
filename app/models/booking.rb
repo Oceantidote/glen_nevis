@@ -32,7 +32,8 @@ class Booking < ApplicationRecord
         departure: departure.strftime('%Y-%m-%d'),
         referral_id: marketing_source_id,
         party_size: adults + children + infants,
-        note: nil
+        note: nil,
+        canmove_flag: 1
       },
       customer: add_customer,
       cost: {
