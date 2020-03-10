@@ -45,9 +45,6 @@ class Booking < ApplicationRecord
       },
       extras: JSON.parse(extras)
     }
-    unless admin_note.blank?
-      booking_hash[:base][:note] = admin_note
-    end
     booking_hash
   end
 
