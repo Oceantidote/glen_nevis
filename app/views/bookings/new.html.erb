@@ -164,10 +164,20 @@
             <div id="last_name-error" class="error"><%= @booking.errors.messages[:last_name][0] %></div>
           </div>
         </div>
-        <div class="one field">
-          <label>Email Address</label>
-          <input data-error="email-error" type="text" name="[booking]email" value="<%= @booking.email %>" id="email" class="req">
-          <div id="email-error" class="error"><%= @booking.errors.messages[:email][0] %></div>
+        <div class="two fields">
+          <div class="ten wide field">
+            <label>Email Address</label>
+            <input data-error="email-error" type="text" name="[booking]email" value="<%= @booking.email %>" id="email" class="req">
+            <div id="email-error" class="error"><%= @booking.errors.messages[:email][0] %></div>
+          </div>
+          <div class="six wide field">
+              <label>GDPR Permission</label>
+              <select data-error="gdpr-error" id="gdpr" class="ui dropdown req" name="[booking]gdpr">
+                <option value="false">No</option>
+                <option id="gdpr-true" value="true">Yes</option>
+              </select>
+              <div id="gdpr-error" class="error"><%= @booking.errors.messages[:gdpr][0] %></div>
+          </div>
         </div>
         <input id="customer_id" type="hidden" name="[booking]customer_id" value="">
         <div class="two fields">
@@ -224,22 +234,6 @@
             <label>Work Phone</label>
             <input type="text" name="[booking]work_phone" value="<%= @booking.work_phone %>">
           </div>
-        </div>
-        <div class="one field">
-          <label>GDPR Permission</label>
-          <select data-error="gdpr-error" id="gdpr" class="ui dropdown req" name="[booking]gdpr">
-            <option value="false">No</option>
-            <option id="gdpr-true" value="true">Yes</option>
-          </select>
-          <div id="gdpr-error" class="error"><%= @booking.errors.messages[:gdpr][0] %></div>
-        </div>
-        <div class="one field">
-          <label>Customer Note</label>
-          <textarea rows="3" value="<%= @booking.customer_note %>" name="[booking]customer_note"></textarea>
-        </div>
-        <div class="one field">
-          <label>Admin Note</label>
-          <textarea rows="3" name="[booking]admin_note" value="<%= @booking.admin_note %>"></textarea>
         </div>
         <div class="one field">
           <label>Housekeeping Note</label>
