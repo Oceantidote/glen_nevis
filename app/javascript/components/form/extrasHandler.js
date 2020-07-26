@@ -32,18 +32,16 @@ export const extrasHandler = () => {
       const rate = price ? price['rate'] * 100 : 0
       const formatted_rate = priceFormatter.format(rate / 100)
       const sel_length = types[ele['name']].length > 0
-      const select = `<select class="addon-select">${types[ele['name']].map(
+      const select = `<select class="addon-select ui fluid dropdown">${types[ele['name']].map(
         x => `<option value=${x}>${x}</option>`
       )}</select>`
-      let addon_form = `<div class='addon' data-id='${
+      let addon_form = `<div class='addon field' data-id='${
         ele['id']
-      }' data-rate='${rate}'><div class='addon-lhs'><div class='addon-name'>${
+      }' data-rate='${rate}'><label class='addon-name'>${
         ele['name']
-      }</div><div class='addon-desc'>${
-        ele['description']
-      }</div></div><div class='addon-rhs'>${sel_length ? select : ''}${
-        formatted_rate == '£0.00' ? '' : formatted_rate
-      }</div></div>`
+      }</label>${
+        formatted_rate == '£0.00' ? '£0.00' : formatted_rate
+      }${sel_length ? select : ''}</div>`
       $('#addons').append(addon_form)
     })
     updateInput()
