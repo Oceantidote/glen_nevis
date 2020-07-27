@@ -9,24 +9,27 @@
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div class="eight wide column">
         <div class="three fields">
-          <div class="field">
+          <div class="six wide field">
             <label>Arrival</label>
             <div id="arrival_cal" class="ui calendar">
-              <div class="ui input left icon">
-                <i class="calendar icon"></i>
-                <input data-error="arrival-error" id="arrival_date" value="<%= Date.today.strftime('%d/%m/%Y') %>" type="string" placeholder="Arrival Date" name="[booking]arrival" class="availability-update req dep">
+              <div class="ui input">
+                <input data-error="arrival-error" id="arrival_date" value="<%= Date.today.strftime('%a %d/%m/%Y') %>" type="string" placeholder="Arrival Date" name="[booking]arrival" class="availability-update req dep">
               </div>
             </div>
             <div id="arrival-error" class="error"><%= @booking.errors.messages[:arrival][0] %></div>
           </div>
-          <div class="field">
+          <div class="four wide field">
             <label>Nights</label>
             <input id="nights" type="number" min="1" max="40" name="[booking]nights" value="1" class="availability-update party-price dep">
           </div>
 
-          <div class="field">
+          <div class="six wide field">
             <label>Departure</label>
-            <input data-error="departure-error" type="date" id ="departure_date" readonly="true" name="[booking]departure" class="req"></input>
+            <div id="departure_cal" class="ui calendar">
+              <div class="ui input">
+                <input data-error="departure-error" type="text" id ="departure_date" readonly="true" name="[booking]departure" class="req"></input>
+              </div>
+            </div>
             <div id="departure-error" class="error"><%= @booking.errors.messages[:departure][0] %></div>
           </div>
         </div>
