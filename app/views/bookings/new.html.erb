@@ -3,6 +3,51 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.1/dist/semantic.min.js"></script>
 <% end %>
+
+<div class="ui menu"  style="text-align: center">
+  <%= link_to root_path, class: "item" do %>
+    <h3><%= Date.today.strftime '%A %-d %B %Y' %></h3>
+  <% end %>
+  <div class="item">
+    <div>
+      Base<br><span class="sums" id="base">£0.00</span>
+    </div>
+    <input type="hidden" name="[booking]base_cents" id="base_cents" value="0">
+  </div>
+  <div class="item">
+    <div>
+      Party<br><span class="sums" id="party">£0.00</span>
+    </div>
+    <input type="hidden" name="[booking]party_cents" id="party_cents" value="0">
+  </div>
+  <div class="item">
+    <div>
+      Extras<br><span class="sums" id="addon">£0.00</span>
+    </div>
+    <input type="hidden" name="[booking]add_on_cents" id="add_on_cents" value="0">
+  </div>
+  <div class="item">
+    <div>
+      Disc<br><span class="sums" id="discount">£0.00</span>
+    </div>
+    <input type="hidden" name="[booking]discount_cents" id="discount_cents" value="0">
+  </div>
+  <div class="item">
+    <div>
+      Total<br><span class="sums" id="total">£0.00</span>
+    </div>
+    <input type="hidden" name="[booking]party_cents" id="party_cents" value="0">
+  </div>
+
+  <div class="right menu" id="navbarSupportedContent">
+      <% if user_signed_in? %>
+        <% if current_user.admin %>
+          <%= link_to "Admin", admin_root_path, class: "item" %>
+        <% end %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "item" %>
+      <% end %>
+  </div>
+</div>
 <div class="ui container">
   <form class="ui form" method="post" id="quick_book" action="<%= bookings_path %>" data-discounts="<%= @discounts %>">
     <div class="ui two column stackable grid container">
@@ -71,29 +116,6 @@
         <h4 id="extras" data-date="<%= @mid_year %>" data-extras="<%= @extras %>" data-prices="<%= @prices %>">Add Ons</h4>
         <div class="ui grid fields" id="addons"></div>
         <input type="hidden" name="[booking]extras" id="extras-input" value="">
-        <h4>Cost Breakdown</h4>
-        <div class="five fields">
-          <div class="field">
-            <label>Base</label><span class="sums" id="base">£0.00</span>
-            <input type="hidden" name="[booking]base_cents" id="base_cents" value="0">
-          </div>
-          <div class="field">
-            <label>Party</label><span class="sums" id="party">£0.00</span>
-            <input type="hidden" name="[booking]party_cents" id="party_cents" value="0">
-          </div>
-          <div class="field">
-            <label>Add On</label><span class="sums" id="addon">£0.00</span>
-            <input type="hidden" name="[booking]add_on_cents" id="add_on_cents" value="0">
-          </div>
-          <div class="field">
-            <label>Discount</label>- <span class="sums" id="discount">£0.00</span>
-            <input type="hidden" name="[booking]discount_cents" id="discount_cents" value="0">
-          </div>
-          <div class="field">
-            <label>Total</label><span id="total">£0.00</span>
-            <input type="hidden" name="[booking]price_cents" id="price_cents" value="0">
-          </div>
-        </div>
         <h4>Payment</h4>
         <div class="field">
           <select class="ui dropdown" name="[booking]payment_type">

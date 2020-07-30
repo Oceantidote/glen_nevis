@@ -17,6 +17,7 @@ class BookingsController < ApplicationController
     @extras = extras_get.to_json
     @prices = extras_prices_post.to_json
     @mid_year = Date.today.beginning_of_year + 6.months
+    @hide_navbar = true
     attach_units_to_categories(@categories, @units)
   end
 
