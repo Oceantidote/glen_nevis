@@ -98,7 +98,6 @@
           </select>
           <input id="pitch_name" name="[booking]pitch_name" type="hidden">
         </div>
-        <h4>Party Members</h4>
         <div class="three fields">
           <div class="field">
             <label>Adults</label>
@@ -113,8 +112,8 @@
             <input class="party-price" id="infants" type="number" min="0" max="40" name="[booking]infants" value=0>
           </div>
         </div>
-        <h4 id="extras" data-date="<%= @mid_year %>" data-extras="<%= @extras %>" data-prices="<%= @prices %>">Add Ons</h4>
-        <div class="ui grid fields" id="addons"></div>
+        <div id="extras" data-date="<%= @mid_year %>" data-extras="<%= @extras %>" data-prices="<%= @prices %>"></div>
+          <div class="ui grid fields" id="addons"></div>
         <input type="hidden" name="[booking]extras" id="extras-input" value="">
         <h4>Payment</h4>
         <div class="field">
