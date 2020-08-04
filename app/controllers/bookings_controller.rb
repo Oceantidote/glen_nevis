@@ -5,8 +5,6 @@ class BookingsController < ApplicationController
   before_action :allow_iframe_requests if Rails.env.development?
   before_action :set_booking, only: [:print, :payment, :process_payment, :secure, :secure_form, :callback, :iframe_redirect, :show]
 
-
-
   def new
     @countries = COUNTRIES
     @booking = Booking.new
@@ -28,7 +26,7 @@ class BookingsController < ApplicationController
       data = booking_put
       @booking.update(anytime_booking_id: data['booking_id'], anytime_booking_reference: data['booking_ref'])
       upload_notes
-      if !@booking.payment_type.match?(/paid/)
+      if @booking.payment_type.match?(/phone/)
         redirect_to payment_booking_path(@booking)
       else
         payment_put
@@ -150,6 +148,7 @@ class BookingsController < ApplicationController
                                     :print,
                                     :nights,
                                     :payment_type,
+                                    :payment_amount,
                                     :pitch_name)
   end
 

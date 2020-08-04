@@ -10,7 +10,7 @@ class Booking < ApplicationRecord
   end
 
   def amount_to_pay
-    if payment_type.match?(/deposit/)
+    if payment_amount.match?(/deposit/)
       500
     else
       price_cents
@@ -54,9 +54,16 @@ class Booking < ApplicationRecord
       payment: {
         send_email: 1,
         booking_id: anytime_booking_id,
-        amount: payment_type.match?('deposit') ? 5.00 : price_cents/100.to_f,
-        type: payment_type.match?('deposit') ? 1 : 2,
-        payment_method_id: payment_type.match?('card') ? 1 : 3,
+        amount: payment_amount.match?('deposit') ? 5.00 : price_cents/100.to_f,
+        type: payment_amount.match?('deposit') ? 1 : 2,
+        payment_method_id: case payment_type
+        when 'pdq'
+          1
+        when 'cash'
+          2
+        when 'card'
+          11
+        end,
         note: payment_type
       }
     }
