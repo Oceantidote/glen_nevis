@@ -115,30 +115,31 @@
         <div id="extras" data-date="<%= @mid_year %>" data-extras="<%= @extras %>" data-prices="<%= @prices %>"></div>
           <div class="ui grid fields" id="addons"></div>
         <input type="hidden" name="[booking]extras" id="extras-input" value="">
-        <h4>Payment</h4>
-        <div class="field">
-          <select class="ui dropdown" name="[booking]payment_type">
-            <option value="card-deposit">Make Deposit Payment</option>
-            <option value="card-full">Make Full Payment</option>
-            <option value="cash-paid-deposit">Paid Deposit via Cash</option>
-            <option value="card-paid-deposit">Paid Deposit via Card</option>
-            <option value="cash-paid">Full Payment Received: Cash</option>
-            <option value="card-paid">Full Payment Received: Card</option>
-          </select>
-        </div>
-        <div class="inline fields">
-          <label>Print label after adding?</label>
+        <div class="three fields">
           <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="[booking]print" value="true">
-              <label>Yes</label>
-            </div>
+            <label>Payment Amount</label>
+            <select class="ui dropdown" name="[booking]payment_amount">
+              <option value="full">Full</option>
+              <option value="deposit">Depsoit</option>
+              <option value="none">None</option>
+            </select>
           </div>
+
           <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="[booking]print" checked="checked" value="false">
-              <label>No</label>
-            </div>
+            <label>Payment Type</label>
+            <select class="ui dropdown" name="[booking]payment_type">
+              <option value="phone">Phone</option>
+              <option value="pdq">PDQ</option>
+              <option value="cash">Cash</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Print Ticket</label>
+            <select class="ui dropdown" name="[booking]print">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
           </div>
         </div>
         <div class="two fields">
