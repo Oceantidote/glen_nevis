@@ -4,10 +4,12 @@ const discounts = $('#quick_book').data("discounts")
 
 export const discountHandler = () => {
   setTimeout(() => {
-    const arrival = moment($('#arrival_date').val(), 'DD/MM/YYYY').format(
+    const arrival = moment($('#arrival_date').val(), 'ddd DD/MM/YYYY').format(
       'YYYY-MM-DD'
     )
-    const departure = $('#departure_date').val()
+    const departure = moment($('#departure_date').val(), 'ddd DD/MM/YYYY').format(
+      'YYYY-MM-DD'
+    )
     const unit = $('#unit-dropdown').val()
     const nights = $('#nights').val()
     const discount_matches = discounts.filter( x => x.units.includes(parseInt(unit)) && x.dates.some( y => y.date_from <= arrival && y.date_to >= departure))

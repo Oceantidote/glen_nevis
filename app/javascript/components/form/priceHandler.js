@@ -49,10 +49,12 @@ export const datePriceHandler = () => {
 }
 
 const dealWithData = data => {
-  const arrival = moment($('#arrival_date').val(), 'DD/MM/YYYY').format(
+  const arrival = moment($('#arrival_date').val(), 'ddd DD/MM/YYYY').format(
     'YYYY-MM-DD'
   )
-  const departure = $('#departure_date').val()
+  const departure = moment($('#departure_date').val(), 'ddd DD/MM/YYYY').format(
+    'YYYY-MM-DD'
+  )
   var itr = moment.twix(new Date(arrival), new Date(departure)).iterate('days')
   var range = []
   while (itr.hasNext()) {

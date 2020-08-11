@@ -14,7 +14,7 @@ export const availabilityHandler = () => {
 export const checkAvailability = async () => {
   let ids = []
   populateIds(ids)
-  const arrival = moment($('#arrival_date').val(), 'DD/MM/YYYY').format(
+  const arrival = moment($('#arrival_date').val(), 'ddd DD/MM/YYYY').format(
     'YYYY-MM-DD'
   )
 

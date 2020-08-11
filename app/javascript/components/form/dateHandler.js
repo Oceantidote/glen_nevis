@@ -24,7 +24,7 @@ const updateDeparture = () => {
   const arrival_element = document.getElementById('arrival_date')
   const nights = document.getElementById('nights').value
   const departure_element = document.getElementById('departure_date')
-  const arrival_date = moment(arrival_element.value.substring(4,14), 'DD/MM/YYYY')
+  const arrival_date = moment(arrival_element.value, 'ddd DD/MM/YYYY')
   if (isNaN(arrival_date)) {
     return
   }
