@@ -49,7 +49,7 @@
           <% end %>
         </div>
         <div class="item">
-          <button id="add_booking" value="add_booking" class="fluid ui positive button" name="add_booking" type="submit" data-confirm="Are you sure you wish to proceed to payment? You will not be able to change these details again after progressing to the payment stage.">Quick Add to Anytime</button>
+          <button id="add_booking" value="add_booking" class="fluid ui positive button" name="add_booking" type="submit" data-confirm="Are you sure you wish to proceed to payment? You will not be able to change these details again after progressing to the payment stage.">Add Booking</button>
         </div>
       </div>
     </div>
@@ -132,7 +132,7 @@
             <label>Payment Type</label>
             <select class="ui dropdown" name="[booking]payment_type">
               <option value="phone">Phone</option>
-              <option value="pdq">PDQ</option>
+              <option value="pdq" selected="selected">PDQ</option>
               <option value="cash">Cash</option>
             </select>
           </div>
@@ -162,21 +162,22 @@
       <div class="eight wide column">
         <div class="three fields">
           <div class="eight wide field">
-            <label>Marketing Source</label>
             <select id="marketing_source_id" class="ui dropdown" name="[booking]marketing_source_id">
               <% @referrals.each do |referral| %>
-                <option value="<%= referral['id'] %>"><%= referral['name'] %></option>
+                <option
+                  value="<%= referral['id'] %>"
+                  <%= 'selected = \"selected\"' if referral['name'] == 'WALK IN' %>>
+                  <%= referral['name'] %>
+                </option>
               <% end %>
             </select>
           </div>
           <div class="eight wide field">
-            <label>Vehicle Reg</label>
-            <input type="text" name="[booking]vehicle_reg" value="">
+            <input type="text" name="[booking]vehicle_reg" value="" placeholder="Vehicle Reg">
           </div>
         </div>
         <div class="three fields">
           <div class="four wide field">
-            <label>Title</label>
             <select class="ui dropdown">
               <option value="2">Mr</option>
               <option value="1">Mrs</option>
@@ -184,27 +185,23 @@
             </select>
           </div>
           <div class="four wide field">
-            <label>First Name</label>
-            <input data-error="first_name-error" type="text" name="[booking]first_name" class="req" value="<%= @booking.first_name %>">
+            <input data-error="first_name-error" type="text" name="[booking]first_name" class="req" value="<%= @booking.first_name %>" placeholder="First Name">
             <div id="first_name-error" class="error"><%= @booking.errors.messages[:first_name][0] %></div>
           </div>
           <div class="eight wide field">
-            <label>Surname</label>
-            <input data-error="last_name-error" type="text" name="[booking]last_name" value="<%= @booking.last_name %>" class="req">
+            <input data-error="last_name-error" type="text" name="[booking]last_name" value="<%= @booking.last_name %>" class="req" placeholder="Surname">
             <div id="last_name-error" class="error"><%= @booking.errors.messages[:last_name][0] %></div>
           </div>
         </div>
         <div class="two fields">
           <div class="ten wide field">
-            <label>Email Address</label>
-            <input data-error="email-error" type="text" name="[booking]email" value="<%= @booking.email %>" id="email" class="req">
+            <input data-error="email-error" type="text" name="[booking]email" value="<%= @booking.email %>" id="email" class="req" placeholder="Email Address">
             <div id="email-error" class="error"><%= @booking.errors.messages[:email][0] %></div>
           </div>
           <div class="six wide field">
-              <label>GDPR Permission</label>
               <select data-error="gdpr-error" id="gdpr" class="ui dropdown req" name="[booking]gdpr">
-                <option value="false">No</option>
-                <option id="gdpr-true" value="true">Yes</option>
+                <option value="false">No GDPR Permission</option>
+                <option id="gdpr-true" value="true">Yes GDPR Permission</option>
               </select>
               <div id="gdpr-error" class="error"><%= @booking.errors.messages[:gdpr][0] %></div>
           </div>
@@ -212,12 +209,10 @@
         <input id="customer_id" type="hidden" name="[booking]customer_id" value="">
         <div class="two fields">
           <div class="four wide field">
-            <label>Postcode</label>
-            <input data-error="postcode-error" type="text" name="[booking]postcode" value="<%= @booking.postcode %>" id="postcode" class="req">
+            <input data-error="postcode-error" type="text" name="[booking]postcode" value="<%= @booking.postcode %>" id="postcode" class="req" placeholder="Postcode">
             <div id="postcode-error" class="error"><%= @booking.errors.messages[:postcode][0] %></div>
           </div>
           <div class="twelve wide field">
-            <label>Action</label>
             <button id="find_address" value="find_address" class="disabled fluid ui button" name="find_address" type="submit">Look Up Address</button>
           </div>
         </div>
@@ -253,21 +248,17 @@
         </div>
         <div class="three fields">
           <div class="field">
-            <label>Mobile Phone</label>
-            <input type="text" name="[booking]mobile_phone" value="<%= @booking.mobile_phone %>">
+            <input type="text" name="[booking]mobile_phone" value="<%= @booking.mobile_phone %>" placeholder="Mobile Phone">
           </div>
           <div class="field">
-            <label>Home Phone</label>
-            <input type="text" name="[booking]home_phone" value="<%= @booking.home_phone %>">
+            <input type="text" name="[booking]home_phone" value="<%= @booking.home_phone %>" placeholder="Home Phone">
           </div>
           <div class="field">
-            <label>Work Phone</label>
-            <input type="text" name="[booking]work_phone" value="<%= @booking.work_phone %>">
+            <input type="text" name="[booking]work_phone" value="<%= @booking.work_phone %>" placeholder="Work Phone">
           </div>
         </div>
         <div class="one field">
-          <label>Housekeeping Note</label>
-          <textarea rows="3" value="<%= @booking.housekeeping_note %>" name="[booking]housekeeping_note"></textarea>
+          <textarea rows="2" value="<%= @booking.housekeeping_note %>" name="[booking]housekeeping_note" placeholder="Housekeeping Note"></textarea>
         </div>
       </div>
     </div>
